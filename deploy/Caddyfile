@@ -1,19 +1,30 @@
-# Sayt va admin panel uchun statik server (SPA). Railway PORT ni o'zi beradi.
+# Sayt va admin panel uchun server (SPA). Railway PORT ni o'zi beradi.
+# /api/* so'rovlari Railway ichki tarmog'i orqali "api" servisiga uzatiladi —
+# shuning uchun brauzer uchun hammasi bitta domen: CORS va VITE_API_URL kerak emas.
 {
 	admin off
 	auto_https off
+	servers {
+		# Railway edge proxy qo'ygan X-Forwarded-For saqlansin (rate limit mijozning haqiqiy IP'si bo'yicha)
+		trusted_proxies static 0.0.0.0/0 ::/0
+	}
 }
 
 :{$PORT:8080} {
-	root * /srv
 	encode zstd gzip
 
-	# Vite fayl nomlari xeshlangan — abadiy keshlash xavfsiz; index.html esa har doim yangisi olinadi
-	@assets path /assets/*
-	header @assets Cache-Control "public, max-age=31536000, immutable"
-	@html not path /assets/*
-	header @html Cache-Control "no-cache"
+	handle /api/* {
+		reverse_proxy {$API_INTERNAL_URL:http://api.railway.internal:8080}
+	}
 
-	try_files {path} /index.html
-	file_server
+	handle {
+		root * /srv
+		# Vite fayl nomlari xeshlangan — abadiy keshlash xavfsiz; index.html esa har doim yangisi olinadi
+		@assets path /assets/*
+		header @assets Cache-Control "public, max-age=31536000, immutable"
+		@html not path /assets/*
+		header @html Cache-Control "no-cache"
+		try_files {path} /index.html
+		file_server
+	}
 }

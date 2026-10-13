@@ -14,5 +14,7 @@ RUN npm run build -w @mc/api && npm prune --omit=dev
 
 WORKDIR /app/apps/api
 ENV NODE_ENV=production
+# '::' — IPv4 va IPv6 (Railway ichki tarmog'i IPv6 ishlatadi). Ichki manzil: api.railway.internal:8080
+ENV HOST=:: PORT=8080
 # Har deploy'da migratsiyalar qo'llanadi. SEED_ON_START=true — boshlang'ich ma'lumotlar va admin (bir martalik)
 CMD ["sh", "-c", "node dist/migrate.js && if [ \"$SEED_ON_START\" = true ]; then node dist/seed.js; fi && exec node dist/server.js"]

@@ -10,10 +10,9 @@ RUN npm ci
 
 COPY packages/shared packages/shared
 COPY apps/admin apps/admin
-# Railway servis o'zgaruvchisi build paytida ARG orqali keladi: https://<api-domen>/api
-ARG VITE_API_URL
+# API shu domendagi /api orqali (Caddy uni ichki tarmoqdan api servisiga uzatadi)
+ENV VITE_API_URL=/api
 ENV VITE_USE_MOCK=false
-RUN test -n "$VITE_API_URL" || (echo "VITE_API_URL berilmagan" >&2 && exit 1)
 RUN npm run build -w @mc/admin
 
 FROM caddy:2-alpine
