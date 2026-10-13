@@ -120,6 +120,8 @@ Sayt va admin Caddy'da ishlaydi. Caddy `/api/*` so'rovlarini Railway ichki tarmo
 
 api servisi o'zgaruvchilari: `DATABASE_URL=${{Postgres.DATABASE_URL}}`, `PORT=8080`, `JWT_SECRET`, `UPLOAD_DIR=/data/uploads` (Volume `/data` ga ulanadi), `ADMIN_EMAIL`, `ADMIN_PASSWORD`, birinchi deploy uchun `SEED_ON_START=true`. Domen (Generate Domain) faqat shop va admin uchun kerak.
 
+Admin login'i `ADMIN_EMAIL` va `ADMIN_PASSWORD` dan olinadi: ularni almashtirib Deploy qilinsa, yangi email/parol o'rnatiladi, eski admin o'chiriladi va ochiq sessiyalar yopiladi.
+
 API har deploy'da migratsiyalarni o'zi qo'llaydi. Seed (toifalar, demo mahsulotlar, admin) faqat `SEED_ON_START=true` bo'lganda ishlaydi. Birinchi muvaffaqiyatli deploy'dan keyin bu o'zgaruvchini olib tashlang, aks holda mahsulotlar jadvali bo'shab qolsa demo mahsulotlar qaytadan qo'shiladi.
 
 ### Ishga tushirishdan oldin

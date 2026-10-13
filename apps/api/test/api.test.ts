@@ -6,6 +6,7 @@ import type { CreateOrderInput, Order } from '@mc/shared';
 import { buildApp } from '../src/app';
 import { db, sqlClient } from '../src/db/client';
 import { admins, categories, coupons, products } from '../src/db/schema';
+import { syncAdmin } from '../src/services/admin';
 import { DEFAULT_SETTINGS, saveSettings } from '../src/services/settings';
 
 let app: FastifyInstance;
@@ -61,6 +62,27 @@ describe('auth', () => {
   it('/auth/me foydalanuvchini qaytaradi', async () => {
     const res = await app.inject({ url: '/api/auth/me', headers: auth() });
     expect(res.json()).toMatchObject({ email: 'admin@test.uz', name: 'Admin' });
+  });
+});
+
+describe('admin login sozlamasi', () => {
+  it('email/parol almashsa eski admin o‘chadi va eski sessiya yaroqsiz bo‘ladi', async () => {
+    const before = auth();
+    expect(await syncAdmin('ADMIN@test.uz', 'secret123', 'Admin')).toBe('unchanged');
+    // parol o'zgarmagan — sessiya saqlanadi
+    expect((await app.inject({ url: '/api/auth/me', headers: before })).statusCode).toBe(200);
+
+    expect(await syncAdmin('boss@test.uz', 'yangiParol99')).toBe('created');
+    expect((await app.inject({ url: '/api/auth/me', headers: before })).statusCode).toBe(401);
+    const login = (email: string, password: string) =>
+      app.inject({ method: 'POST', url: '/api/auth/login', payload: { email, password } });
+    expect((await login('admin@test.uz', 'secret123')).statusCode).toBe(401);
+    const ok = await login('boss@test.uz', 'yangiParol99');
+    expect(ok.statusCode).toBe(200);
+
+    expect(await syncAdmin('boss@test.uz', 'boshqaParol1')).toBe('updated');
+    const me = await app.inject({ url: '/api/auth/me', headers: { authorization: `Bearer ${ok.json().token}` } });
+    expect(me.statusCode).toBe(401);
   });
 });
 

@@ -20,7 +20,7 @@ export const authRoutes: FastifyPluginAsync = async (app) => {
       const ok = await bcrypt.compare(password, admin?.passwordHash ?? DUMMY_HASH);
       if (!admin || !ok) throw new HttpError(401, "Email yoki parol noto'g'ri");
       const user: AdminUser = { id: admin.id, name: admin.name, email: admin.email };
-      return { token: await signToken(admin.id), user };
+      return { token: await signToken(admin.id, admin.passwordHash), user };
     },
   );
 

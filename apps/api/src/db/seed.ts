@@ -1,14 +1,14 @@
 /**
  * Boshlang'ich ma'lumotlar. Takroriy ishga tushirish xavfsiz:
  *  - toifa/mahsulot/promokod/sozlamalar faqat jadval bo'sh bo'lsa qo'shiladi;
- *  - admin foydalanuvchi ADMIN_EMAIL bo'yicha yaratiladi yoki paroli yangilanadi;
+ *  - admin ADMIN_EMAIL/ADMIN_PASSWORD bo'yicha o'rnatiladi (boshqa adminlar o'chiriladi);
  *  - `--demo` bilan buyurtmalar jadvali bo'sh bo'lsa 64 ta demo buyurtma qo'shiladi.
  */
-import bcrypt from 'bcryptjs';
 import { count, sql } from 'drizzle-orm';
 import { db, sqlClient } from './client';
-import { admins, categories, coupons, orders, products } from './schema';
+import { categories, coupons, orders, products } from './schema';
 import { seedCategories, seedOrders, seedProducts } from './seed-data';
+import { syncAdmin } from '../services/admin';
 import { DEFAULT_SETTINGS, saveSettings } from '../services/settings';
 
 const withDemo = process.argv.includes('--demo');
@@ -48,11 +48,7 @@ if (!hasSettings.n) {
 const email = (process.env.ADMIN_EMAIL ?? 'admin@muslima.uz').trim().toLowerCase();
 const password = process.env.ADMIN_PASSWORD ?? 'admin123';
 const name = process.env.ADMIN_NAME ?? 'Admin';
-const passwordHash = await bcrypt.hash(password, 12);
-await db
-  .insert(admins)
-  .values({ email, name, passwordHash })
-  .onConflictDoUpdate({ target: admins.email, set: { passwordHash, name } });
+await syncAdmin(email, password, name);
 console.log(`✓ admin: ${email}`);
 
 if (withDemo && (await isEmpty(orders))) {

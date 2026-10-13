@@ -11,6 +11,10 @@ const schema = z.object({
   /** Yuklangan rasmlar papkasi (apps/api ga nisbatan yoki absolyut yo'l) */
   UPLOAD_DIR: z.string().default('uploads'),
   SHOP_TZ: z.string().default('Asia/Tashkent'),
+  /** Admin login. Berilsa, API har ishga tushganda shu email/parolni o'rnatadi (services/admin.ts) */
+  ADMIN_EMAIL: z.string().trim().email('ADMIN_EMAIL noto‘g‘ri').optional(),
+  ADMIN_PASSWORD: z.string().min(1).optional(),
+  ADMIN_NAME: z.string().trim().optional(),
   TELEGRAM_BOT_TOKEN: z.string().default(''),
   TELEGRAM_CHAT_ID: z.string().default(''),
 });
