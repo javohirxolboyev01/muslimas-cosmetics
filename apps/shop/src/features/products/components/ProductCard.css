@@ -4,7 +4,8 @@
 .thumb svg{width:100%;height:100%;transition:.4s;filter:drop-shadow(0 10px 12px rgba(80,30,70,.16))}
 .card:hover .thumb svg{transform:scale(1.07) rotate(-2deg)}
 .thumb.has-img{padding:0}
-.thumb .pimg{width:100%;height:100%;object-fit:cover;transition:.4s}
+/* absolute: Safari aspect-ratio qutida height:100% ni hisoblamaydi — rasm joyni to'liq egallashi uchun */
+.thumb .pimg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:.4s}
 .card:hover .thumb .pimg{transform:scale(1.05)}
 .tag{position:absolute;top:12px;left:50%;transform:translateX(-50%);font-size:.7rem;font-weight:800;padding:4px 11px;border-radius:99px;background:#fff;color:var(--pink-deep);box-shadow:0 4px 10px rgba(0,0,0,.06);z-index:2;white-space:nowrap}
 .card-heart{position:absolute;top:18px;right:18px;z-index:3}
