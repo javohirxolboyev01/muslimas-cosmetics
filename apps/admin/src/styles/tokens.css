@@ -1,0 +1,50 @@
+:root {
+  /* brend — do'kon sayti bilan bir xil */
+  --pink: #f0508a;
+  --pink-deep: #d93573;
+  --pink-soft: #ffe4ee;
+  --rose: #ffb3cd;
+  --lilac: #ece3ff;
+  --mint: #dcf6e9;
+  --butter: #fff2c6;
+  --sky: #e3f1ff;
+  --navy: #101c26;
+  --navy-2: #1b2b38;
+
+  /* sirtlar va matn */
+  --bg: #fbf7f9;
+  --surface: #ffffff;
+  --surface-2: #fdf6f9;
+  --ink: #3a2840;
+  --ink-2: #5b4660;
+  --muted: #7a657f;
+  --line: #f1e1e8;
+  --line-strong: #e6cfd9;
+
+  /* holat ranglari */
+  --ok: #2f9a67;
+  --ok-soft: #dcf6e9;
+  --warn: #a8700a;
+  --warn-soft: #fff2c6;
+  --bad: #d4264f;
+  --bad-soft: #ffe1e8;
+  --info: #2d6cc4;
+  --info-soft: #e3f1ff;
+  --accent: #6b4fd1;
+  --accent-soft: #ece3ff;
+
+  --radius-sm: 10px;
+  --radius: 16px;
+  --radius-lg: 24px;
+  --shadow-sm: 0 1px 2px rgba(58, 40, 64, 0.05), 0 4px 14px rgba(120, 60, 100, 0.05);
+  --shadow: 0 18px 50px rgba(120, 60, 100, 0.14);
+  --focus: 0 0 0 4px var(--pink-soft);
+
+  --font-head: 'Gowun Batang', Georgia, serif;
+  --font-script: 'Dancing Script', cursive;
+  --font-body: 'Manrope', system-ui, sans-serif;
+
+  --sidebar-w: 260px;
+  --topbar-h: 64px;
+  --gutter: clamp(16px, 3vw, 32px);
+}

@@ -1,0 +1,5 @@
+.qty{display:inline-flex;align-items:center;background:#fff;border:1.5px solid var(--line);border-radius:99px}
+.qty button{width:44px;height:44px;font-size:1.2rem;font-weight:700;color:var(--pink-deep);border-radius:50%}
+.qty button:hover{background:var(--pink-soft)}
+.qty span{min-width:30px;text-align:center;font-weight:800}
+.qty-sm button{width:36px;height:36px}

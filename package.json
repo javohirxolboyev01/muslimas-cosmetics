@@ -1,0 +1,18 @@
+{
+  "name": "muslimas-cosmetics",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "workspaces": ["packages/*", "apps/*"],
+  "scripts": {
+    "dev": "npm run dev --workspace=@mc/api & npm run dev --workspace=@mc/shop & npm run dev --workspace=@mc/admin & wait",
+    "dev:api": "npm run dev --workspace=@mc/api",
+    "dev:shop": "npm run dev --workspace=@mc/shop",
+    "dev:admin": "npm run dev --workspace=@mc/admin",
+    "db:migrate": "npm run db:migrate --workspace=@mc/api",
+    "db:seed": "npm run db:seed --workspace=@mc/api",
+    "typecheck": "npm run typecheck --workspaces --if-present",
+    "test": "npm run test --workspaces --if-present",
+    "build": "npm run build --workspaces --if-present"
+  }
+}

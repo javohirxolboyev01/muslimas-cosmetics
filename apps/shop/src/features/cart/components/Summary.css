@@ -1,0 +1,14 @@
+.row{display:flex;justify-content:space-between;gap:10px;font-size:.92rem;color:var(--muted);padding:4px 0}
+.row.total{font-size:1.2rem;font-weight:800;color:var(--ink);padding-top:12px;margin-top:8px;border-top:1px dashed var(--rose)}
+.row.disc{color:var(--ok)}
+.free{font-size:.82rem;margin:4px 0 14px;color:#6c5873;font-weight:600}
+.bar{height:7px;border-radius:99px;background:var(--pink-soft);margin-top:6px;overflow:hidden}
+.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--pink),#ff9a7a);border-radius:99px;transition:.4s}
+.coupon{display:flex;gap:8px;margin:14px 0}
+.coupon input{flex:1;min-width:0;height:46px;border-radius:99px;border:1.5px solid var(--line);padding:0 16px;outline:0;text-transform:uppercase;font-size:16px;background:#fff}
+.coupon input:focus{border-color:var(--pink)}
+.coupon input:disabled{background:var(--pink-soft);color:var(--pink-deep);font-weight:800}
+.coupon button{padding:0 18px;height:46px;border-radius:99px;background:var(--pink-soft);color:var(--pink-deep);font-weight:800;font-size:.85rem;white-space:nowrap}
+.sumline{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:12px;align-items:center;padding:8px 0;font-size:.85rem}
+.sumline b{white-space:nowrap}
+.sumline small{color:var(--muted)}

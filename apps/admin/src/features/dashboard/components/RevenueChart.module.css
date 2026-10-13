@@ -1,0 +1,13 @@
+.wrap { position: relative; width: 100%; min-height: 240px; }
+.grid { stroke: var(--line); stroke-width: 1; }
+.baseline { stroke: var(--line-strong); stroke-width: 1; }
+.axis { fill: var(--muted); font-size: 11px; font-weight: 600; font-variant-numeric: tabular-nums; }
+.bar { fill: var(--pink); transition: fill 0.15s; }
+.barActive { fill: var(--pink-deep); }
+.tooltip {
+  position: absolute; transform: translate(-50%, -100%); pointer-events: none; z-index: 2;
+  display: grid; gap: 1px; padding: 8px 12px; border-radius: 12px; white-space: nowrap;
+  background: var(--navy); color: #fff; font-size: 0.78rem; box-shadow: 0 10px 24px rgba(0, 0, 0, 0.2);
+}
+.tooltip span { color: #cbbfd0; font-weight: 600; }
+.tooltip strong { font-size: 0.92rem; }

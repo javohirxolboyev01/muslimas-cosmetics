@@ -1,0 +1,30 @@
+.overlay {
+  position: fixed; inset: 0; z-index: 200; background: rgba(16, 28, 38, 0.45);
+  backdrop-filter: blur(3px); display: flex; align-items: center; justify-content: center;
+  padding: 16px; animation: fade 0.15s ease-out;
+}
+.dialog {
+  width: 100%; max-height: calc(100dvh - 32px); display: flex; flex-direction: column;
+  background: var(--surface); border-radius: var(--radius-lg); box-shadow: var(--shadow);
+  animation: pop 0.2s cubic-bezier(0.2, 0.8, 0.2, 1); outline: none;
+}
+.sm { max-width: 420px; }
+.md { max-width: 560px; }
+.header { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 18px 20px 6px; }
+.title { font-family: var(--font-head); font-size: 1.3rem; }
+.body { padding: 12px 20px 20px; overflow-y: auto; }
+.footer {
+  display: flex; justify-content: flex-end; gap: 10px; flex-wrap: wrap;
+  padding: 14px 20px; border-top: 1px solid var(--line);
+}
+
+/* mobil: pastdan chiquvchi "bottom sheet" */
+@media (max-width: 640px) {
+  .overlay { align-items: flex-end; padding: 0; }
+  .dialog { max-width: none; border-radius: var(--radius-lg) var(--radius-lg) 0 0; max-height: 92dvh; animation-name: sheet; }
+  .footer { padding-bottom: calc(14px + env(safe-area-inset-bottom)); }
+  .footer > * { flex: 1; }
+}
+@keyframes fade { from { opacity: 0; } }
+@keyframes pop { from { opacity: 0; transform: translateY(10px) scale(0.98); } }
+@keyframes sheet { from { transform: translateY(100%); } }

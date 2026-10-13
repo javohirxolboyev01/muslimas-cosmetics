@@ -1,0 +1,6 @@
+.sec-head{display:flex;justify-content:space-between;align-items:end;gap:16px;flex-wrap:wrap;margin-bottom:28px}
+.sec-head h2{font-family:var(--head);font-size:clamp(1.6rem,3.6vw,2.8rem);line-height:1.15;font-weight:700}
+.sec-head p{color:var(--muted);max-width:34em;margin-top:8px}
+.more{font-weight:700;color:var(--pink-deep);white-space:nowrap}
+.more:hover{text-decoration:underline}
+@media (max-width:640px){.sec-head{margin-bottom:20px}}

@@ -1,0 +1,44 @@
+.layout { display: grid; grid-template-columns: minmax(0, 1fr) 340px; gap: 20px; align-items: start; }
+.main, .side { display: grid; gap: 20px; min-width: 0; }
+.side { position: sticky; top: calc(var(--topbar-h) + 20px); }
+
+.variants { display: grid; gap: 12px; }
+.variant {
+  display: grid; grid-template-columns: 1.2fr 1fr 1fr auto; gap: 12px; align-items: start;
+  padding: 12px; border-radius: var(--radius); background: var(--surface-2);
+}
+.removeVariant { margin-top: 26px; }
+.error { color: var(--bad); font-size: 0.8rem; font-weight: 600; }
+
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip {
+  height: 38px; padding: 0 16px; border-radius: 99px; border: 1.5px solid var(--line-strong);
+  background: var(--surface); font-weight: 700; font-size: 0.85rem; transition: 0.2s;
+}
+.chip:hover { border-color: var(--rose); }
+.chipOn { background: var(--lilac); border-color: #c9b6ff; color: var(--accent); }
+
+.preview { display: grid; justify-items: center; gap: 8px; margin-bottom: 16px; }
+.previewName { font-weight: 700; text-align: center; font-size: 0.9rem; }
+.colors { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+
+.actions { display: flex; gap: 10px; justify-content: flex-end; }
+.actions > * { flex: 1; }
+
+@media (max-width: 1100px) {
+  .layout { grid-template-columns: 1fr; }
+  .side { position: static; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .actions { grid-column: 1 / -1; }
+}
+@media (max-width: 640px) {
+  .side { grid-template-columns: 1fr; }
+  .variant { grid-template-columns: 1fr 1fr; }
+  .variant > :first-child { grid-column: 1 / -1; }
+  .removeVariant { margin-top: 0; grid-column: 1 / -1; justify-self: end; }
+  /* Saqlash tugmasi doim ko'rinib tursin */
+  .actions {
+    position: sticky; bottom: 0; z-index: 5; margin: 0 calc(var(--gutter) * -1);
+    padding: 12px var(--gutter) calc(12px + env(safe-area-inset-bottom));
+    background: rgba(251, 247, 249, 0.94); backdrop-filter: blur(10px); border-top: 1px solid var(--line);
+  }
+}

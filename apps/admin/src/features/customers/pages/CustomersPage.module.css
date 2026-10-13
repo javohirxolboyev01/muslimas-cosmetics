@@ -1,0 +1,11 @@
+.toolbar { display: grid; grid-template-columns: minmax(0, 1fr) 260px; gap: 10px; padding: clamp(14px, 2vw, 20px); }
+.toolbar select { border-radius: 999px; }
+.person { display: flex; align-items: center; gap: 12px; min-width: 0; }
+.person > div { display: grid; min-width: 0; }
+.person strong { font-weight: 700; }
+.person small { color: var(--muted); font-size: 0.8rem; font-weight: 600; }
+.avatar {
+  width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; flex: none;
+  background: linear-gradient(135deg, var(--pink-soft), var(--lilac)); color: var(--pink-deep); font-weight: 800; font-size: 0.85rem;
+}
+@media (max-width: 640px) { .toolbar { grid-template-columns: 1fr; } }

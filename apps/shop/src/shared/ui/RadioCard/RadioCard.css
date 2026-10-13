@@ -1,0 +1,12 @@
+.opts{display:grid;gap:10px}
+.opt{position:relative;display:flex;gap:14px;align-items:center;padding:14px 16px;border:1.5px solid var(--line);border-radius:18px;background:#fff;cursor:pointer;transition:.2s}
+.opt input{position:absolute;opacity:0;pointer-events:none}
+.opt .dot{flex:none;width:20px;height:20px;border-radius:50%;border:2px solid var(--rose);display:grid;place-items:center}
+.opt:has(input:checked){border-color:var(--pink);background:#fff7fa;box-shadow:0 0 0 4px var(--pink-soft)}
+.opt:has(input:checked) .dot{border-color:var(--pink)}
+.opt:has(input:checked) .dot::after{content:"";width:10px;height:10px;border-radius:50%;background:var(--pink)}
+.opt:has(input:focus-visible){outline:3px solid var(--pink);outline-offset:2px}
+.opt b{display:block;font-size:.93rem}
+.opt small{color:var(--muted);font-weight:600;font-size:.8rem}
+.opt .pr{margin-left:auto;font-weight:800;font-size:.88rem;white-space:nowrap}
+@media (max-width:380px){.opt{flex-wrap:wrap}.opt .pr{margin-left:34px}}

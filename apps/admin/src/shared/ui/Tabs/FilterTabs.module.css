@@ -1,0 +1,17 @@
+.tabs {
+  display: flex; gap: 6px; overflow-x: auto; scrollbar-width: none; padding: 2px;
+  margin: -2px; -webkit-overflow-scrolling: touch;
+}
+.tabs::-webkit-scrollbar { display: none; }
+.tab {
+  display: inline-flex; align-items: center; gap: 8px; flex: none; height: 38px; padding: 0 14px;
+  border-radius: 99px; border: 1.5px solid var(--line-strong); background: var(--surface);
+  font-weight: 700; font-size: 0.85rem; transition: 0.2s;
+}
+.tab:hover { border-color: var(--rose); }
+.active { background: var(--pink); border-color: var(--pink); color: #fff; }
+.count {
+  min-width: 22px; height: 20px; padding: 0 6px; border-radius: 99px; display: grid; place-items: center;
+  background: var(--pink-soft); color: var(--pink-deep); font-size: 0.72rem; font-weight: 800;
+}
+.active .count { background: rgba(255, 255, 255, 0.25); color: #fff; }

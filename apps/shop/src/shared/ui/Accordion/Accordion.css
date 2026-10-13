@@ -1,0 +1,9 @@
+.acc{display:grid;gap:10px}
+.acc details{background:#fff;border-radius:20px;box-shadow:0 4px 14px rgba(120,60,100,.05);overflow:hidden}
+.acc summary{list-style:none;cursor:pointer;padding:16px 20px;font-weight:800;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.acc summary::-webkit-details-marker{display:none}
+.acc summary::after{content:"+";font-size:1.4rem;color:var(--pink);transition:.2s;flex:none}
+.acc details[open] summary::after{transform:rotate(45deg)}
+.acc .dc{padding:0 20px 18px;color:#5b4660;font-size:.93rem}
+.acc .dc ol{padding-left:20px;display:grid;gap:6px}
+.acc .dc a{color:var(--pink-deep);font-weight:700}

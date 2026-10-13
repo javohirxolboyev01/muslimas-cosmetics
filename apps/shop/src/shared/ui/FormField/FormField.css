@@ -1,0 +1,9 @@
+.field{display:grid;gap:6px;margin-bottom:14px;min-width:0}
+.field label{font-weight:700;font-size:.85rem}
+.field input,.field select,.field textarea{width:100%;min-height:50px;border-radius:16px;border:1.5px solid var(--line);background:#fff;padding:12px 16px;outline:none;transition:.2s;font-size:16px}
+.field textarea{min-height:100px;resize:vertical}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--pink);box-shadow:0 0 0 4px var(--pink-soft)}
+.field.bad input,.field.bad select,.field.bad textarea{border-color:var(--bad)}
+.field .err{color:var(--bad);font-size:.8rem;font-weight:600}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media (max-width:640px){.row2{grid-template-columns:1fr;gap:0}}

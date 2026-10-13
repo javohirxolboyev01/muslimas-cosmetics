@@ -1,0 +1,5 @@
+.thumb {
+  display: grid; place-items: center; flex: none; border-radius: 999px 999px 10px 10px;
+  overflow: hidden;
+}
+.thumb :global(svg) { width: 100%; height: 100%; }

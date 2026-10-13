@@ -1,0 +1,9 @@
+.tabs { margin-bottom: 14px; }
+.toolbar { display: grid; grid-template-columns: minmax(0, 1fr) 260px; gap: 10px; padding: clamp(14px, 2vw, 20px); }
+.toolbar select { border-radius: 999px; }
+.no { display: grid; gap: 2px; }
+.no strong { font-weight: 800; letter-spacing: 0.02em; }
+.no span, .customer small { font-size: 0.78rem; color: var(--muted); font-weight: 600; }
+.customer { display: grid; gap: 1px; min-width: 0; }
+.customer span { font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+@media (max-width: 640px) { .toolbar { grid-template-columns: 1fr; } }

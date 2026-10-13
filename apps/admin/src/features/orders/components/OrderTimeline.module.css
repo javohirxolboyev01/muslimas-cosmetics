@@ -1,0 +1,16 @@
+.steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px; }
+.step { position: relative; display: grid; justify-items: center; gap: 8px; text-align: center; }
+.step:not(:first-child)::before {
+  content: ''; position: absolute; top: 15px; right: 50%; width: 100%; height: 3px;
+  background: var(--line); z-index: 0;
+}
+.done:not(:first-child)::before { background: var(--pink); }
+.dot {
+  position: relative; z-index: 1; width: 32px; height: 32px; border-radius: 50%; display: grid; place-items: center;
+  background: var(--line); color: var(--muted); font-weight: 800; font-size: 0.85rem;
+}
+.done .dot { background: var(--pink); color: #fff; }
+.label { font-size: 0.8rem; font-weight: 700; color: var(--muted); }
+.done .label { color: var(--ink); }
+.cancelled { display: flex; gap: 8px; align-items: center; color: var(--bad); font-weight: 700; background: var(--bad-soft); padding: 12px 16px; border-radius: var(--radius); }
+@media (max-width: 420px) { .label { font-size: 0.7rem; } }

@@ -1,0 +1,12 @@
+.box { text-align: center; padding: clamp(32px, 6vw, 64px) 20px; display: grid; justify-items: center; gap: 6px; }
+.emoji { font-size: 2.6rem; line-height: 1; margin-bottom: 6px; }
+.errorIcon { width: 64px; height: 64px; border-radius: 50%; display: grid; place-items: center; background: var(--bad-soft); color: var(--bad); }
+.title { font-family: var(--font-head); font-size: 1.25rem; font-weight: 700; }
+.desc { color: var(--muted); max-width: 32em; font-size: 0.92rem; }
+.action { margin-top: 12px; }
+.skeleton {
+  display: block;
+  background: linear-gradient(90deg, #f6ecf1 25%, #fdf5f9 50%, #f6ecf1 75%) 0 0 / 200% 100%;
+  animation: shimmer 1.3s infinite linear;
+}
+@keyframes shimmer { to { background-position: -200% 0; } }

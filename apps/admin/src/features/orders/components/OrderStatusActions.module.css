@@ -1,0 +1,2 @@
+.actions { display: flex; flex-wrap: wrap; gap: 10px; }
+@media (max-width: 640px) { .actions > button { flex: 1 1 100%; } }

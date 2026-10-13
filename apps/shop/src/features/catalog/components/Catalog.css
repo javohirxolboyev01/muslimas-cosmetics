@@ -1,0 +1,32 @@
+.shop{display:grid;grid-template-columns:260px minmax(0,1fr);gap:28px;align-items:start;margin-top:22px}
+.filters{position:sticky;top:calc(var(--header-h) + 20px);display:grid;gap:20px;max-height:calc(100vh - var(--header-h) - 40px);overflow:auto;padding-right:4px;scrollbar-width:thin}
+.fbox h4{font-family:var(--head);font-size:1.05rem;margin-bottom:10px}
+.flist{display:grid;gap:4px}
+.flist a{display:flex;justify-content:space-between;padding:9px 14px;border-radius:14px;font-weight:600;font-size:.9rem;transition:.2s}
+.flist a small{color:var(--muted)}
+.flist a:hover{background:var(--pink-soft)}
+.flist a.on{background:var(--pink);color:#fff}
+.flist a.on small{color:#ffe4ee}
+.tools{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-bottom:20px}
+.tools form{flex:1 1 240px;position:relative;min-width:0}
+.tools input{width:100%;height:50px;border-radius:99px;border:1.5px solid var(--line);background:#fff;padding:0 20px 0 46px;outline:none;font-size:16px}
+.tools input:focus{border-color:var(--pink);box-shadow:0 0 0 4px var(--pink-soft)}
+.tools form svg{position:absolute;left:16px;top:50%;transform:translateY(-50%);width:20px;height:20px;stroke:var(--muted);fill:none;stroke-width:2;stroke-linecap:round}
+.tools select{height:50px;border-radius:99px;border:1.5px solid var(--line);padding:0 20px;font-weight:600;outline:none;min-width:210px}
+.fbtn{display:none;min-height:50px;padding:0 20px}
+.fbtn svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2.2;stroke-linecap:round}
+.fcount{background:var(--pink);color:#fff;border-radius:99px;font-size:.72rem;min-width:20px;height:20px;display:grid;place-items:center;padding:0 6px}
+.count{color:var(--muted);font-weight:600;font-size:.9rem;margin-bottom:14px}
+@media (max-width:1100px){.shop{grid-template-columns:220px minmax(0,1fr)}}
+@media (max-width:860px){
+  .shop{grid-template-columns:1fr;gap:16px}
+  .filters{position:static;display:none;background:#fff;border-radius:24px;padding:18px;max-height:none;overflow:visible;box-shadow:0 4px 20px rgba(120,60,100,.06)}
+  .filters.open{display:grid}
+  .fbtn{display:inline-flex}
+}
+@media (max-width:640px){
+  .tools{gap:10px}
+  .tools form{flex:1 1 100%;order:-1}
+  .tools select{min-width:0;flex:1}
+  .fbtn{flex:0 0 auto}
+}

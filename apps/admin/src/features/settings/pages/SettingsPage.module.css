@@ -1,0 +1,5 @@
+.layout { display: grid; grid-template-columns: 1.3fr 1fr; gap: 20px; align-items: start; }
+.actions { grid-column: 1 / -1; display: flex; justify-content: flex-end; gap: 10px; flex-wrap: wrap; }
+.demo { margin-top: 20px; }
+@media (max-width: 1024px) { .layout { grid-template-columns: 1fr; } }
+@media (max-width: 640px) { .actions > * { flex: 1 1 100%; } }

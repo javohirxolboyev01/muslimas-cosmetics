@@ -1,0 +1,13 @@
+.bar {
+  display: grid; grid-template-columns: minmax(220px, 1fr) repeat(3, minmax(150px, 190px)); gap: 10px;
+  padding: clamp(14px, 2vw, 20px);
+}
+.bar select { border-radius: 999px; }
+@media (max-width: 1100px) {
+  .bar { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .search { grid-column: 1 / -1; }
+}
+@media (max-width: 560px) {
+  .bar { grid-template-columns: 1fr 1fr; }
+  .bar > select:last-child { grid-column: 1 / -1; }
+}

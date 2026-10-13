@@ -1,0 +1,15 @@
+.wrap { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; padding: 14px clamp(12px, 2vw, 20px); }
+.info { font-size: 0.85rem; color: var(--muted); font-weight: 600; font-variant-numeric: tabular-nums; }
+.pages { display: flex; align-items: center; gap: 2px; }
+.page {
+  min-width: 36px; height: 36px; padding: 0 6px; border-radius: 99px; font-weight: 700; font-size: 0.85rem;
+  font-variant-numeric: tabular-nums; transition: background 0.2s;
+}
+.page:hover:not([aria-current]) { background: var(--pink-soft); }
+.page[aria-current='page'] { background: var(--pink); color: #fff; }
+.gap { width: 24px; text-align: center; color: var(--muted); }
+@media (max-width: 480px) {
+  .wrap { justify-content: center; }
+  .page:not([aria-current]) { display: none; }
+  .gap { display: none; }
+}

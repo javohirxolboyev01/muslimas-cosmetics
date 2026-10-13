@@ -1,0 +1,30 @@
+.card{background:#fff;border-radius:28px 28px 22px 22px;padding:10px 10px 18px;box-shadow:0 4px 20px rgba(120,60,100,.06);transition:.3s;display:flex;flex-direction:column;position:relative;min-width:0}
+.card:hover{transform:translateY(-6px);box-shadow:var(--shadow)}
+.thumb{position:relative;display:grid;place-items:center;aspect-ratio:1/1.12;border-radius:999px 999px 18px 18px;padding:20% 18% 8%;overflow:hidden}
+.thumb svg{width:100%;height:100%;transition:.4s;filter:drop-shadow(0 10px 12px rgba(80,30,70,.16))}
+.card:hover .thumb svg{transform:scale(1.07) rotate(-2deg)}
+.tag{position:absolute;top:12px;left:50%;transform:translateX(-50%);font-size:.7rem;font-weight:800;padding:4px 11px;border-radius:99px;background:#fff;color:var(--pink-deep);box-shadow:0 4px 10px rgba(0,0,0,.06);z-index:2;white-space:nowrap}
+.card-heart{position:absolute;top:18px;right:18px;z-index:3}
+.info{padding:14px 10px 0;display:flex;flex-direction:column;gap:4px;flex:1}
+.info small{color:var(--muted);font-weight:600;font-size:.76rem}
+.info h3{font-size:.98rem;font-weight:700;line-height:1.3}
+.info h3 a:hover{color:var(--pink-deep)}
+.price{margin-top:auto;padding-top:8px;display:flex;align-items:baseline;gap:6px;flex-wrap:wrap}
+.price b{font-size:1.08rem;color:var(--pink-deep);font-weight:800}
+.price em{font-style:normal;font-size:.78rem;color:var(--muted)}
+.price s{font-size:.82rem;color:#b9a6bd}
+.add{margin:12px 10px 0;height:44px;border-radius:99px;background:var(--pink-soft);color:var(--pink-deep);font-weight:800;font-size:.88rem;display:flex;align-items:center;justify-content:center;gap:8px;transition:.25s}
+.add:hover{background:var(--pink);color:#fff}
+.add:disabled{background:var(--line, #eee);color:var(--muted, #888);cursor:not-allowed}
+.add svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+
+@media (max-width:640px){
+  .card{border-radius:22px 22px 18px 18px;padding:8px 8px 14px}
+  .card:hover{transform:none}
+  .card-heart{top:14px;right:14px}
+  .card-heart.heart{width:34px;height:34px}
+  .info{padding:12px 6px 0}
+  .info h3{font-size:.88rem}
+  .price b{font-size:.98rem}
+  .add{margin:10px 4px 0;height:40px;font-size:.8rem}
+}
