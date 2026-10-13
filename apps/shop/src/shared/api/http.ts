@@ -2,6 +2,9 @@ import type { ApiErrorBody } from '@mc/shared';
 
 const BASE = import.meta.env.VITE_API_URL || '/api';
 
+/** API serveridagi yuklangan fayl (mahsulot rasmi) manzili */
+export const uploadUrl = (name: string) => `${BASE}/uploads/${encodeURIComponent(name)}`;
+
 export class ApiError extends Error {
   constructor(
     public readonly status: number,

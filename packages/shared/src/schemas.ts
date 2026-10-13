@@ -11,6 +11,9 @@ import { isValidPhone } from './phone';
 const hex = z.string().regex(/^#[0-9a-f]{6}$/i, 'HEX rang (#aabbcc)');
 const money = z.number().int().min(0);
 
+/** Yuklangan rasm nomi: API o'zi beradigan `<32 hex>.<ext>` ko'rinishida */
+export const PRODUCT_IMAGE_RE = /^[a-f0-9]{32}\.(jpg|png|webp)$/;
+
 export const variantSchema = z
   .object({
     label: z.string().trim().min(1, 'Nomini kiriting').max(40),
@@ -26,6 +29,7 @@ export const productInputSchema = z.object({
   color1: hex,
   color2: hex,
   bg: hex,
+  image: z.union([z.literal(''), z.string().regex(PRODUCT_IMAGE_RE, "Rasm noto'g'ri")]).default(''),
   tag: z.string().trim().max(12),
   skin: z.array(z.enum(SKIN_TYPES)),
   variants: z.array(variantSchema).min(1, 'Kamida bitta variant').max(6),

@@ -29,14 +29,16 @@ export const toQueryString = (params?: QueryParams) => {
 async function fetchTransport<T>({ method, path, params, body, signal }: TransportRequest): Promise<T> {
   const qs = toQueryString(params);
   const token = authToken.get();
+  // Fayl (rasm) xom holda yuboriladi, qolganlari JSON
+  const isFile = body instanceof Blob;
   const res = await fetch(`${env.apiUrl}${path}${qs ? `?${qs}` : ''}`, {
     method,
     signal,
     headers: {
-      ...(body === undefined ? {} : { 'Content-Type': 'application/json' }),
+      ...(body === undefined ? {} : { 'Content-Type': isFile ? body.type : 'application/json' }),
       ...(token ? { Authorization: `Bearer ${token}` } : {}),
     },
-    body: body === undefined ? undefined : JSON.stringify(body),
+    body: body === undefined || isFile ? body : JSON.stringify(body),
   });
   const data = res.status === 204 ? null : await res.json().catch(() => null);
   if (!res.ok) throw new ApiError(res.status, data?.message ?? `So'rov xatosi (${res.status})`, data?.errors);
@@ -104,4 +106,5 @@ export const http = {
   put: <T>(path: string, body?: unknown) => transport<T>({ method: 'PUT', path, body }),
   patch: <T>(path: string, body?: unknown) => transport<T>({ method: 'PATCH', path, body }),
   delete: <T = void>(path: string) => transport<T>({ method: 'DELETE', path }),
+  upload: <T>(path: string, file: Blob) => transport<T>({ method: 'POST', path, body: file }),
 };

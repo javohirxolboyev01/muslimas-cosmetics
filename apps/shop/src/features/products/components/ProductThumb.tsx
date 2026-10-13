@@ -1,4 +1,4 @@
-import { ProductArt } from './ProductArt';
+import { ProductVisual } from './ProductVisual';
 import type { Product } from '../model/types';
 import { cn } from '@/shared/lib/cn';
 import './ProductThumb.css';
@@ -7,10 +7,10 @@ import './ProductThumb.css';
 export function ProductThumb({ product, size = 'md', flat }: { product: Product; size?: 'sm' | 'md'; flat?: boolean }) {
   return (
     <span
-      className={cn('pthumb', `pthumb-${size}`)}
+      className={cn('pthumb', `pthumb-${size}`, product.image && 'pthumb-img')}
       style={{ background: flat ? product.bg : `linear-gradient(180deg,${product.bg},#fff)` }}
     >
-      <ProductArt shape={product.shape} c1={product.color1} c2={product.color2} />
+      <ProductVisual product={product} />
     </span>
   );
 }

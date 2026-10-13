@@ -6,6 +6,7 @@ import { db } from '../../db/client';
 import { categories, products } from '../../db/schema';
 import { HttpError, notFound, parse } from '../../lib/errors';
 import { toProduct } from '../../lib/mappers';
+import { assertImageExists, removeImage } from '../../lib/uploads';
 import { likePattern, pageQuery, pageWindow, paginated } from '../../lib/paginate';
 
 const firstPrice = sql`(${products.variants}->0->>'price')::int`;
@@ -63,6 +64,7 @@ export const productAdminRoutes: FastifyPluginAsync = async (app) => {
   app.post('/', async (req, reply) => {
     const input = parse(productInputSchema, req.body);
     await assertCategory(input.categoryId);
+    if (input.image) await assertImageExists(input.image);
     const [row] = await db.insert(products).values(input).returning();
     reply.code(201);
     return toProduct(row);
@@ -72,15 +74,21 @@ export const productAdminRoutes: FastifyPluginAsync = async (app) => {
     const id = idParam(req.params.id);
     const input = partial ? parse(productPatchSchema, req.body) : parse(productInputSchema, req.body);
     if (input.categoryId) await assertCategory(input.categoryId);
+    const [old] = await db.select({ image: products.image }).from(products).where(eq(products.id, id));
+    if (!old) return notFound('Mahsulot');
+    if (input.image && input.image !== old.image) await assertImageExists(input.image);
     const [row] = await db.update(products).set(input).where(eq(products.id, id)).returning();
-    return row ? toProduct(row) : notFound('Mahsulot');
+    if (!row) return notFound('Mahsulot');
+    if (old.image && old.image !== row.image) await removeImage(old.image);
+    return toProduct(row);
   };
   app.put<{ Params: { id: string } }>('/:id', update(false));
   app.patch<{ Params: { id: string } }>('/:id', update(true));
 
   app.delete<{ Params: { id: string } }>('/:id', async (req, reply) => {
-    const [row] = await db.delete(products).where(eq(products.id, idParam(req.params.id))).returning({ id: products.id });
+    const [row] = await db.delete(products).where(eq(products.id, idParam(req.params.id))).returning({ id: products.id, image: products.image });
     if (!row) return notFound('Mahsulot');
+    await removeImage(row.image);
     reply.code(204);
   });
 };

@@ -1,12 +1,13 @@
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Controller, useFieldArray, useForm, useWatch, type Control } from 'react-hook-form';
+import { Controller, useFieldArray, useForm } from 'react-hook-form';
 import { useCategories } from '@/features/categories/queries';
 import { SKIN_LABELS } from '@/shared/config/constants';
 import { cn } from '@/shared/lib/cn';
 import { PRODUCT_SHAPES } from '@/shared/lib/productArt';
 import type { SkinType } from '@/shared/types';
-import { Button, ButtonLink, Card, Field, Input, ProductThumb, Select, Switch, Textarea } from '@/shared/ui';
+import { Button, ButtonLink, Card, Field, Input, Select, Switch, Textarea } from '@/shared/ui';
 import { productSchema, type ProductFormValues } from '../schema';
+import { ImagePicker } from './ImagePicker';
 import styles from './ProductForm.module.css';
 
 interface ProductFormProps {
@@ -26,17 +27,6 @@ const COLOR_FIELDS = [
   { name: 'color2', label: 'Rang 2' },
   { name: 'bg', label: 'Fon' },
 ] as const;
-
-/** Faqat preview kuzatadi — butun forma har bir rang o'zgarishida qayta render bo'lmaydi */
-function Preview({ control }: { control: Control<ProductFormValues> }) {
-  const [shape, color1, color2, bg, name] = useWatch({ control, name: ['shape', 'color1', 'color2', 'bg', 'name'] });
-  return (
-    <div className={styles.preview}>
-      <ProductThumb product={{ shape, color1, color2, bg }} size={140} />
-      <p className={styles.previewName}>{name || 'Mahsulot nomi'}</p>
-    </div>
-  );
-}
 
 export function ProductForm({ defaultValues, onSubmit, submitting, submitText, serverErrors, requireDirty }: ProductFormProps) {
   const { data: categories, isPending: categoriesLoading } = useCategories();
@@ -143,7 +133,8 @@ export function ProductForm({ defaultValues, onSubmit, submitting, submitText, s
 
       <aside className={styles.side}>
         <Card title="Ko'rinish">
-          <Preview control={control} />
+          <ImagePicker control={control} />
+          {serverErrors?.image && <p className={styles.error}>{serverErrors.image}</p>}
           <div className="stack">
             <Field label="Shakl" error={errors.shape?.message}>
               <Select {...register('shape')}>

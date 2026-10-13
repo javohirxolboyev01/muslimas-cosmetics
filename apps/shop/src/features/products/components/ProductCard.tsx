@@ -1,6 +1,6 @@
 import { memo } from 'react';
 import { Link } from 'react-router-dom';
-import { ProductArt } from './ProductArt';
+import { ProductVisual } from './ProductVisual';
 import { WishButton } from '@/features/wishlist/components/WishButton';
 import { useAddToCart } from '@/features/cart/hooks/useAddToCart';
 import { useCategoryName } from '../hooks/useCategories';
@@ -16,9 +16,9 @@ export const ProductCard = memo(function ProductCard({ product: p }: { product: 
 
   return (
     <article className="card">
-      <Link className="thumb" to={url} style={{ background: `linear-gradient(180deg,${p.bg},#fff)` }} aria-label={p.name}>
+      <Link className={p.image ? 'thumb has-img' : 'thumb'} to={url} style={{ background: `linear-gradient(180deg,${p.bg},#fff)` }} aria-label={p.name}>
         {p.tag && <span className="tag">{p.tag}</span>}
-        <ProductArt shape={p.shape} c1={p.color1} c2={p.color2} />
+        <ProductVisual product={p} />
       </Link>
       <WishButton productId={p.id} className="card-heart" />
       <div className="info">

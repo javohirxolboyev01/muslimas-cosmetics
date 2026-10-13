@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { MAX_QTY, useShop } from '@/config/shop';
 import { usageSteps } from '@/config/usage';
 import { useAddToCart } from '@/features/cart';
-import { ProductArt, useCategoryName, type Product } from '@/features/products';
+import { ProductVisual, useCategoryName, type Product } from '@/features/products';
 import { WishButton } from '@/features/wishlist';
 import { SKIN_LABELS } from '@mc/shared';
 import { copyText } from '@/shared/lib/clipboard';
@@ -35,9 +35,9 @@ export function ProductDetails({ product: p }: { product: Product }) {
   return (
     <div className="pd">
       <div className="gal">
-        <div className="big" style={{ background: `linear-gradient(170deg,${p.bg},#fff)` }}>
+        <div className={p.image ? 'big has-img' : 'big'} style={{ background: `linear-gradient(170deg,${p.bg},#fff)` }}>
           {p.tag && <span className="tag">{p.tag}</span>}
-          <ProductArt shape={p.shape} c1={p.color1} c2={p.color2} />
+          <ProductVisual product={p} eager />
         </div>
         <div className="perks">
           {PERKS.map(([e, t]) => <div key={t}><i aria-hidden="true">{e}</i>{t}</div>)}

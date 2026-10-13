@@ -47,6 +47,7 @@ export const seedProducts = (now: number): Product[] =>
     color1,
     color2,
     bg,
+    image: '',
     tag,
     skin: (skin ? skin.split(',') : []) as SkinType[],
     variants: vars.split('|').map((v) => {

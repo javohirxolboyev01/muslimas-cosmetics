@@ -184,6 +184,39 @@ describe('admin: CRUD', () => {
     expect(del.statusCode).toBe(204);
   });
 
+  it('rasm yuklash: faqat rasm qabul qilinadi, almashtirilgan rasm o‘chadi', async () => {
+    const png = Buffer.concat([Buffer.from([0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a]), Buffer.alloc(32)]);
+    const upload = (payload: Buffer, type = 'image/png', headers: Record<string, string> = auth()) =>
+      app.inject({ method: 'POST', url: '/api/uploads', headers: { ...headers, 'content-type': type }, payload });
+
+    expect((await upload(png, 'image/png', {})).statusCode).toBe(401);
+    expect((await upload(Buffer.from('<svg xmlns="http://www.w3.org/2000/svg"/>'), 'image/png')).statusCode).toBe(415);
+    expect((await upload(png, 'text/plain')).statusCode).toBe(415);
+
+    const first = await upload(png);
+    expect(first.statusCode).toBe(201);
+    const a = first.json().name as string;
+    expect(a).toMatch(/^[a-f0-9]{32}\.png$/);
+    const file = await app.inject({ url: `/api/uploads/${a}` });
+    expect(file.headers['content-type']).toBe('image/png');
+    expect(file.rawPayload.equals(png)).toBe(true);
+    expect((await app.inject({ url: '/api/uploads/..%2F.env' })).statusCode).toBe(404);
+
+    const missing = await app.inject({ method: 'PATCH', url: '/api/products/1', headers: auth(), payload: { image: `${'0'.repeat(32)}.png` } });
+    expect(missing.statusCode).toBe(422);
+    expect((await app.inject({ method: 'PATCH', url: '/api/products/1', headers: auth(), payload: { image: '../x.png' } })).statusCode).toBe(422);
+
+    await app.inject({ method: 'PATCH', url: '/api/products/1', headers: auth(), payload: { image: a } });
+    const pub = (await app.inject({ url: '/api/public/products/1' })).json();
+    expect(pub.image).toBe(a);
+
+    const b = (await upload(png)).json().name as string;
+    await app.inject({ method: 'PATCH', url: '/api/products/1', headers: auth(), payload: { image: b } });
+    expect((await app.inject({ url: `/api/uploads/${a}` })).statusCode).toBe(404);
+    await app.inject({ method: 'PATCH', url: '/api/products/1', headers: auth(), payload: { image: '' } });
+    expect((await app.inject({ url: `/api/uploads/${b}` })).statusCode).toBe(404);
+  });
+
   it('ro‘yxat sahifalanadi va filtrlanadi', async () => {
     const res = (await app.inject({ url: '/api/products?status=low&sort=stock_asc&pageSize=1&page=9', headers: auth() })).json();
     // qoldig'i ≤ 5: barcha 3 tasi; 9-sahifa so'ralsa oxirgi (3-) sahifa qaytadi

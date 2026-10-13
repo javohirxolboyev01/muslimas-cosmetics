@@ -30,6 +30,7 @@ export const products = pgTable(
     color1: text('color1').notNull(),
     color2: text('color2').notNull(),
     bg: text('bg').notNull(),
+    image: text('image').notNull().default(''),
     tag: text('tag').notNull().default(''),
     skin: text('skin').array().$type<SkinType[]>().notNull().default(sql`'{}'::text[]`),
     variants: jsonb('variants').$type<Variant[]>().notNull(),

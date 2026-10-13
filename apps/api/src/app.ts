@@ -13,6 +13,7 @@ import { productAdminRoutes } from './routes/admin/products';
 import { settingsAdminRoutes } from './routes/admin/settings';
 import { authRoutes } from './routes/auth';
 import { publicRoutes } from './routes/public';
+import { uploadAdminRoutes, uploadPublicRoutes } from './routes/uploads';
 import { sqlClient } from './db/client';
 
 export async function buildApp() {
@@ -62,6 +63,7 @@ export async function buildApp() {
 
   await app.register(publicRoutes, { prefix: '/api/public' });
   await app.register(authRoutes, { prefix: '/api/auth' });
+  await app.register(uploadPublicRoutes, { prefix: '/api/uploads' });
 
   // Admin API: har bir so'rov JWT bilan himoyalangan
   await app.register(async (admin) => {
@@ -73,6 +75,7 @@ export async function buildApp() {
     await admin.register(customerAdminRoutes, { prefix: '/customers' });
     await admin.register(couponAdminRoutes, { prefix: '/coupons' });
     await admin.register(settingsAdminRoutes, { prefix: '/settings' });
+    await admin.register(uploadAdminRoutes, { prefix: '/uploads' });
   }, { prefix: '/api' });
 
   return app;

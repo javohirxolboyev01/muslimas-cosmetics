@@ -31,6 +31,8 @@ export interface Product {
   color1: string;
   color2: string;
   bg: string;
+  /** Yuklangan rasm fayli nomi (`/api/uploads/<image>`); '' — rasm yo'q, SVG illyustratsiya ko'rsatiladi */
+  image: string;
   tag: string;
   skin: SkinType[];
   variants: Variant[];

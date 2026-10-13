@@ -1,0 +1,19 @@
+# Sayt va admin panel uchun statik server (SPA). Railway PORT ni o'zi beradi.
+{
+	admin off
+	auto_https off
+}
+
+:{$PORT:8080} {
+	root * /srv
+	encode zstd gzip
+
+	# Vite fayl nomlari xeshlangan — abadiy keshlash xavfsiz; index.html esa har doim yangisi olinadi
+	@assets path /assets/*
+	header @assets Cache-Control "public, max-age=31536000, immutable"
+	@html not path /assets/*
+	header @html Cache-Control "no-cache"
+
+	try_files {path} /index.html
+	file_server
+}

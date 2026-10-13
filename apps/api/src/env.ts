@@ -8,6 +8,8 @@ const schema = z.object({
   JWT_SECRET: z.string().min(32, 'JWT_SECRET kamida 32 belgi bo‘lsin'),
   JWT_TTL: z.string().default('7d'),
   CORS_ORIGINS: z.string().default(''),
+  /** Yuklangan rasmlar papkasi (apps/api ga nisbatan yoki absolyut yo'l) */
+  UPLOAD_DIR: z.string().default('uploads'),
   SHOP_TZ: z.string().default('Asia/Tashkent'),
   TELEGRAM_BOT_TOKEN: z.string().default(''),
   TELEGRAM_CHAT_ID: z.string().default(''),

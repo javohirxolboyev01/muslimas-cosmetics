@@ -3,6 +3,9 @@
 .gal .big{position:relative;aspect-ratio:1/1.1;border-radius:999px 999px 32px 32px;display:grid;place-items:center;padding:22% 22% 9%;box-shadow:var(--shadow);overflow:hidden}
 .gal .big::before{content:"";position:absolute;width:70%;aspect-ratio:1;border-radius:50%;background:rgba(255,255,255,.55);left:15%;top:14%;box-shadow:0 0 0 18px rgba(255,255,255,.25)}
 .gal .big svg{position:relative;z-index:1;width:100%;height:100%;filter:drop-shadow(0 18px 20px rgba(80,30,70,.2));animation:float 7s ease-in-out infinite}
+.gal .big.has-img{padding:0}
+.gal .big.has-img::before{display:none}
+.gal .big .pimg{position:relative;z-index:1;width:100%;height:100%;object-fit:cover}
 .perks{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:18px}
 .perks div{background:#fff;border-radius:18px;padding:12px 8px;text-align:center;font-size:.76rem;font-weight:700;box-shadow:0 4px 14px rgba(120,60,100,.05)}
 .perks i{display:block;font-style:normal;font-size:1.3rem}

@@ -100,6 +100,7 @@ Majburiy sozlamalar:
 - `JWT_SECRET`: kamida 32 belgi, tasodifiy.
 - `DATABASE_URL`.
 - `CORS_ORIGINS`: sayt va admin domenlari, vergul bilan ajratilgan. Masalan: `https://muslima.uz,https://admin.muslima.uz`.
+- `UPLOAD_DIR`: mahsulot rasmlari saqlanadigan papka (standart: `apps/api/uploads`). Doimiy (persistent) diskda bo'lishi va zaxira nusxaga kirishi kerak, aks holda qayta deploy'da rasmlar yo'qoladi.
 
 API reverse proxy (nginx, Caddy) ortida HTTPS bilan ishlashi kerak. `trustProxy` yoqilgan, shuning uchun rate limit mijozning haqiqiy IP'si bo'yicha ishlaydi.
 
@@ -111,6 +112,16 @@ VITE_API_URL=https://api.muslima.uz/api npm run build -w @mc/admin   # → apps/
 Ikkalasi ham SPA. Hostingda barcha yo'llar `index.html` ga qaytishi kerak (Netlify: `/* /index.html 200`, Vercel: rewrites, nginx: `try_files $uri /index.html`).
 
 Agar sayt, admin va API bitta domenda bo'lsa (masalan, nginx `/api` ni API'ga proxy qilsa), `VITE_API_URL=/api` qoldiriladi va CORS kerak bo'lmaydi.
+
+### Railway (har bir qism alohida servis)
+Har bir ilovada `Dockerfile` va `railway.json` bor. Build konteksti repo ildizi bo'ladi, chunki `@mc/shared` kerak. Railway'da 4 ta servis ochiladi: **Postgres**, **api**, **shop**, **admin**. Ilova servislari bitta GitHub repodan yaratiladi va **Settings → Config-as-code** da o'z faylini ko'rsatadi: `/apps/api/railway.json`, `/apps/shop/railway.json`, `/apps/admin/railway.json`. Root Directory bo'sh qoladi.
+
+| Servis | O'zgaruvchilar |
+| --- | --- |
+| api | `DATABASE_URL=${{Postgres.DATABASE_URL}}`, `JWT_SECRET`, `UPLOAD_DIR=/data/uploads` (Volume `/data` ga ulanadi), `ADMIN_EMAIL`, `ADMIN_PASSWORD`, `CORS_ORIGINS=https://${{shop.RAILWAY_PUBLIC_DOMAIN}},https://${{admin.RAILWAY_PUBLIC_DOMAIN}}`, birinchi deploy uchun `SEED_ON_START=true` |
+| shop, admin | `VITE_API_URL=https://${{api.RAILWAY_PUBLIC_DOMAIN}}/api` (build paytida o'qiladi) |
+
+API har deploy'da migratsiyalarni o'zi qo'llaydi. Seed (toifalar, demo mahsulotlar, admin) faqat `SEED_ON_START=true` bo'lganda ishlaydi. Birinchi muvaffaqiyatli deploy'dan keyin bu o'zgaruvchini olib tashlang, aks holda mahsulotlar jadvali bo'shab qolsa demo mahsulotlar qaytadan qo'shiladi.
 
 ### Ishga tushirishdan oldin
 - [ ] `ADMIN_PASSWORD` kuchli parolga almashtirilgan, demo `admin123` ishlatilmayapti
