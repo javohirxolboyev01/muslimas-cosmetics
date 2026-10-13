@@ -1,4 +1,5 @@
 import { http } from '@/shared/api/http';
+import { isApiError } from '@/shared/api/ApiError';
 import { env } from '@/shared/config/env';
 import type { Paginated, Product } from '@/shared/types';
 
@@ -27,7 +28,10 @@ export const productsApi = {
   /** Rasmni yuklaydi va fayl nomini qaytaradi. Mock rejimida rasm data URL ko'rinishida localStorage'da saqlanadi */
   uploadImage: async (file: Blob): Promise<string> => {
     if (env.useMock) return readAsDataUrl(file);
-    return (await http.upload<{ name: string }>('/uploads', file)).name;
+    const send = () => http.upload<{ name: string }>('/uploads', file);
+    // Mobil internetda ulanish uzilishi mumkin (status 0) — bir marta qayta urinamiz
+    const res = await send().catch((e: unknown) => (isApiError(e) && e.status === 0 ? send() : Promise.reject(e)));
+    return res.name;
   },
 };
 

@@ -74,7 +74,7 @@ export function ImagePicker({ control }: { control: Control<ProductFormValues> }
           <Button size="sm" variant="ghost" icon="trash" onClick={() => field.onChange('')} disabled={uploading}>O'chirish</Button>
         </div>
       ) : (
-        <p className={styles.imageHint}>JPG, PNG yoki WEBP. Bosing yoki rasmni shu yerga tortib tashlang. Rasm bo'lmasa, quyidagi shakl va ranglardan illyustratsiya chiziladi.</p>
+        <p className={styles.imageHint}>Bosing va galereyadan rasm tanlang (kompyuterda shu yerga tortib tashlash ham mumkin). Rasm bo'lmasa, quyidagi shakl va ranglardan illyustratsiya chiziladi.</p>
       )}
       {error && <p className={styles.error} role="alert">{error}</p>}
     </div>

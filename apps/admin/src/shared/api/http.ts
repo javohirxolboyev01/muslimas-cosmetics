@@ -38,7 +38,12 @@ async function fetchTransport<T>({ method, path, params, body, signal }: Transpo
       ...(body === undefined ? {} : { 'Content-Type': isFile ? body.type : 'application/json' }),
       ...(token ? { Authorization: `Bearer ${token}` } : {}),
     },
-    body: body === undefined || isFile ? body : JSON.stringify(body),
+    // Fayl ArrayBuffer qilib yuboriladi: iOS Safari Blob body'ni ba'zan uzib qo'yadi ("Load failed")
+    body: body === undefined ? undefined : isFile ? await body.arrayBuffer() : JSON.stringify(body),
+  }).catch((e: unknown) => {
+    if (e instanceof Error && e.name === 'AbortError') throw e;
+    // fetch faqat tarmoq xatosida (internet yo'q, ulanish uzildi) shu yerga tushadi
+    throw new ApiError(0, "Server bilan bog'lanib bo'lmadi. Internetni tekshirib, qayta urinib ko'ring");
   });
   const data = res.status === 204 ? null : await res.json().catch(() => null);
   if (!res.ok) throw new ApiError(res.status, data?.message ?? `So'rov xatosi (${res.status})`, data?.errors);
