@@ -10,7 +10,7 @@ interface Props {
   className?: string;
 }
 
-/** To'q fonli "oilaviy do'kon" banneri — bosh sahifa va "Biz haqimizda"da qayta ishlatiladi. */
+/** To'q fonli brend banneri — bosh sahifa va "Biz haqimizda"da qayta ishlatiladi. */
 export function FamilyBanner({ title, text, action, className }: Props) {
   const shop = useShop();
   return (
@@ -22,7 +22,7 @@ export function FamilyBanner({ title, text, action, className }: Props) {
       </div>
       <div className="mark" aria-hidden="true">
         {shop.name}
-        <small>Oilaviy onlayn do'kon</small>
+        <small>Koreys kosmetikasi do'koni</small>
       </div>
     </div>
   );

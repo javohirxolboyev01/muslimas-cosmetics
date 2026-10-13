@@ -30,8 +30,8 @@ export default function HomePage() {
       <section className="s flush-top">
         <div className="wrap">
           <FamilyBanner
-            title="Oilaviy do'kon — har bir buyurtmaga shaxsiy e'tibor"
-            text="Biz katta korporatsiya emasmiz — oilamiz bilan ishlaymiz. Shuning uchun buyurtmangizni o'zimiz qadoqlaymiz, savollaringizga o'zimiz javob beramiz."
+            title="Original koreys kosmetikasi — teringizga mos tanlov"
+            text="Har bir mahsulotni tarkibi va sifatiga qarab tanlaymiz. Teri turingizni ayting — sizga mos parvarish tartibini birgalikda tuzamiz."
             action={{ label: "Biz haqimizda o'qing", to: '/about' }}
           />
         </div>

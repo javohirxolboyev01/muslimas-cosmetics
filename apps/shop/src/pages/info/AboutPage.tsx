@@ -4,7 +4,7 @@ import { FamilyBanner } from '@/widgets/FamilyBanner';
 import './InfoPages.css';
 
 const VALUES = [
-  { e: '💗', t: "Shaxsiy e'tibor", d: 'Har bir buyurtmani oilamiz bilan qadoqlaymiz va savollaringizga shaxsan javob beramiz.' },
+  { e: '💗', t: "Shaxsiy e'tibor", d: "Har bir buyurtmani e'tibor bilan qadoqlaymiz va savollaringizga shaxsan javob beramiz." },
   { e: '🛡️', t: 'Ishonchli tanlov', d: "Mahsulotlarni tanlashda tarkibi va teri turiga mosligiga e'tibor beramiz." },
   { e: '🤝', t: 'Halol munosabat', d: 'Aniq narx, ochiq yetkazib berish shartlari va tushunarli maslahat.' },
 ];
@@ -16,8 +16,8 @@ export default function AboutPage() {
       <PageHeader crumbs={[{ label: 'Biz haqimizda' }]} title="Biz haqimizda" />
       <FamilyBanner
         className="about-banner"
-        title="Muslima's Cosmetics — oilaviy onlayn do'kon"
-        text="Biz Koreya kosmetikasini sevadigan oilamiz. Maqsadimiz — sizga ishonchli, original va teringizga mos mahsulotlarni qulay narxda yetkazish."
+        title="Muslima's Cosmetics — koreys kosmetikasi do'koni"
+        text="Biz Koreya kosmetikasini sevamiz va uni sizga yaqinlashtiramiz. Maqsadimiz — sizga ishonchli, original va teringizga mos mahsulotlarni qulay narxda yetkazish."
         action={{ label: "Katalogni ko'rish", to: '/shop' }}
       />
       <InfoCardGrid>

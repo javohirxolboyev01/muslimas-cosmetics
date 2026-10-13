@@ -17,7 +17,7 @@ export function Footer() {
         <div className="f-grid">
           <div>
             <Logo variant="footer" />
-            <p>Oilaviy onlayn do'kon: Koreyaning teri parvarishi va makiyaj vositalari.</p>
+            <p>Koreys kosmetikasi onlayn do'koni: teri parvarishi va makiyaj vositalari.</p>
           </div>
           {COLUMNS.map((col) => (
             <div key={col.title}>

@@ -9,7 +9,7 @@ export function Hero() {
       <div className="wrap hero-grid">
         <div>
           <h1>Nurli teri — Seuldan to'g'ri uyingizgacha</h1>
-          <p className="lead">Oilaviy onlayn do'kon: Koreyaning teri parvarishi va makiyaj vositalari, har bir xaridorga shaxsiy maslahat bilan.</p>
+          <p className="lead">Koreyaning original teri parvarishi va makiyaj vositalari — har bir xaridorga shaxsiy maslahat bilan.</p>
           <div className="cta-row">
             <Button to="/shop">Xarid qilishni boshlash</Button>
             <Button to="/about" variant="soft">Biz haqimizda</Button>
