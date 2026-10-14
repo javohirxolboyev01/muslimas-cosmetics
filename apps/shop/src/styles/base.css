@@ -1,6 +1,7 @@
 *{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
-body{font-family:var(--body);color:var(--ink);line-height:1.6;overflow-x:hidden;min-height:100vh;
+/* Mobil: double-tap zoom yo'q, sahifa yon tomonga siljimaydi, chetda "rezina" tortilish yo'q */
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;touch-action:manipulation;overflow-x:hidden;overflow-x:clip;overscroll-behavior:none}
+body{font-family:var(--body);color:var(--ink);line-height:1.6;overflow-x:hidden;overflow-x:clip;overscroll-behavior:none;min-height:100vh;-webkit-tap-highlight-color:transparent;
   background:radial-gradient(900px 500px at 8% -5%,#ffe8f1 0,transparent 60%),radial-gradient(800px 500px at 100% 10%,#efe8ff 0,transparent 60%),radial-gradient(900px 600px at 50% 100%,#ffeede 0,transparent 60%),var(--paper);
   background-attachment:fixed}
 #root{display:flex;flex-direction:column;min-height:100vh}
@@ -31,7 +32,8 @@ section.s.flush-bottom{padding-bottom:0}
 
 @media (max-width:1100px){.two{grid-template-columns:minmax(0,1fr) 340px}}
 @media (max-width:860px){
-  body{padding-bottom:calc(var(--bnav-h) + env(safe-area-inset-bottom))}
+  /* iOS'da fixed fon har scroll'da qayta chiziladi va ekran "qimirlaydi" */
+  body{padding-bottom:calc(var(--bnav-h) + env(safe-area-inset-bottom));background-attachment:scroll}
   .two{grid-template-columns:1fr}
   .sticky-aside{position:static}
 }

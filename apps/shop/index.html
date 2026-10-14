@@ -2,7 +2,7 @@
 <html lang="uz">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
     <meta name="theme-color" content="#f0508a" />
     <title>Muslima's Cosmetics — Koreys kosmetikasi</title>
     <meta name="description" content="Muslima's Cosmetics — koreys kosmetikasi onlayn do'koni. Original teri parvarishi va makiyaj vositalari." />
@@ -19,6 +19,8 @@
       if (window.Telegram && Telegram.WebApp && Telegram.WebApp.initData) {
         Telegram.WebApp.ready();
         Telegram.WebApp.expand();
+        // Pastga scroll qilganda Mini App yopilib/kichrayib ketmasin
+        if (Telegram.WebApp.disableVerticalSwipes) Telegram.WebApp.disableVerticalSwipes();
       }
     </script>
     <script type="module" src="/src/main.tsx"></script>
