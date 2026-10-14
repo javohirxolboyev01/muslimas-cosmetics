@@ -42,11 +42,11 @@ export default function OrdersPage() {
           {isLoading ? (
             Array.from({ length: 3 }, (_, i) => <Skeleton key={i} style={{ height: 76, borderRadius: 20 }} />)
           ) : isError ? (
-            <EmptyState emoji="⚠️" title="Yuklab bo'lmadi" text="Internet aloqasini tekshiring." action={{ label: 'Qayta urinish', onClick: () => refetch() }} />
+            <EmptyState icon="alert" title="Yuklab bo'lmadi" text="Internet aloqasini tekshiring." action={{ label: 'Qayta urinish', onClick: () => refetch() }} />
           ) : orders?.length ? (
             orders.map((o) => <OrderListItem key={o.no} order={o} />)
           ) : (
-            <EmptyState emoji="📦" title="Hozircha buyurtma yo'q" text="Birinchi buyurtmangizni bering." action={{ label: 'Katalogga', to: '/shop' }} />
+            <EmptyState icon="package" title="Hozircha buyurtma yo'q" text="Birinchi buyurtmangizni bering." action={{ label: 'Katalogga', to: '/shop' }} />
           )}
         </div>
         <Panel as="aside" title="Buyurtmani qidirish">

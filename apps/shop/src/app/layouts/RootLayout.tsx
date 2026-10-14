@@ -1,5 +1,5 @@
 import { Suspense, useEffect, useRef } from 'react';
-import { Outlet, ScrollRestoration, useLocation } from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
 import { SearchOverlay } from '@/features/search';
 import { Toaster } from '@/shared/toast/Toaster';
 import { PageLoader } from '@/shared/ui';
@@ -7,6 +7,7 @@ import { BottomNav } from '@/widgets/BottomNav';
 import { Footer } from '@/widgets/Footer';
 import { Header } from '@/widgets/Header';
 import { TopBar } from '@/widgets/TopBar';
+import { ScrollManager } from './ScrollManager';
 
 export function RootLayout() {
   const { pathname } = useLocation();
@@ -31,7 +32,7 @@ export function RootLayout() {
       <BottomNav />
       <SearchOverlay />
       <Toaster />
-      <ScrollRestoration getKey={(loc) => loc.pathname} />
+      <ScrollManager />
     </>
   );
 }

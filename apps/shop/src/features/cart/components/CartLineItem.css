@@ -5,7 +5,9 @@
 .line small{color:var(--muted);font-weight:600}
 .line-qty{display:flex;width:max-content;margin-top:8px}
 .line-tot{text-align:right;font-weight:800;color:var(--pink-deep);display:grid;justify-items:end;gap:6px;white-space:nowrap}
-.rm{width:36px;height:36px;border-radius:50%;color:var(--muted);font-size:1.1rem}
+.rm{width:36px;height:36px;border-radius:50%;color:var(--muted);display:grid;place-items:center;transition:.2s}
+.rm:hover{color:var(--bad);background:var(--pink-soft)}
+.rm .icon{width:18px;height:18px}
 .rm:hover{background:var(--pink-soft);color:var(--pink-deep)}
 @media (max-width:640px){
   .line{grid-template-columns:auto minmax(0,1fr);gap:12px;align-items:start}

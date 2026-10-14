@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { MAX_QTY, useShop } from '@/config/shop';
 import { usageSteps } from '@/config/usage';
@@ -9,10 +9,10 @@ import { SKIN_LABELS } from '@mc/shared';
 import { copyText } from '@/shared/lib/clipboard';
 import { discountPercent, formatPrice } from '@/shared/lib/format';
 import { toast } from '@/shared/toast/toastStore';
-import { Accordion, Button, Chip, ChipGroup, QtyStepper } from '@/shared/ui';
+import { Accordion, Button, Chip, ChipGroup, Icon, QtyStepper, type IconName } from '@/shared/ui';
 import { Link } from 'react-router-dom';
 
-const PERKS = [['🛡️', 'Original'], ['🚚', 'Tez yetkazish'], ['🎁', "Sovg'a qadoq"]];
+const PERKS: [IconName, string][] = [['shieldCheck', 'Original'], ['truck', 'Tez yetkazish'], ['gift', "Sovg'a qadoq"]];
 
 export function ProductDetails({ product: p }: { product: Product }) {
   const navigate = useNavigate();
@@ -21,6 +21,7 @@ export function ProductDetails({ product: p }: { product: Product }) {
   const SHOP = useShop();
   const [vi, setVi] = useState(0);
   const [qty, setQty] = useState(1);
+  const [copied, setCopied] = useState(false);
   const vr = p.variants[vi];
   const off = discountPercent(vr.price, vr.oldPrice);
   const shareUrl = `${window.location.origin}/product/${p.id}`;
@@ -30,7 +31,16 @@ export function ProductDetails({ product: p }: { product: Product }) {
     add(p.id, vi, qty, { silent: true });
     navigate('/checkout');
   };
-  const share = async () => toast((await copyText(shareUrl)) ? 'Havola nusxalandi' : "Havolani nusxalab bo'lmadi");
+  const share = async () => {
+    const ok = await copyText(shareUrl);
+    toast(ok ? 'Havola nusxalandi' : "Havolani nusxalab bo'lmadi");
+    setCopied(ok);
+  };
+  useEffect(() => {
+    if (!copied) return;
+    const t = setTimeout(() => setCopied(false), 2000);
+    return () => clearTimeout(t);
+  }, [copied]);
 
   return (
     <div className="pd">
@@ -40,7 +50,7 @@ export function ProductDetails({ product: p }: { product: Product }) {
           <ProductVisual product={p} eager />
         </div>
         <div className="perks">
-          {PERKS.map(([e, t]) => <div key={t}><i aria-hidden="true">{e}</i>{t}</div>)}
+          {PERKS.map(([e, t]) => <div key={t}><Icon name={e} />{t}</div>)}
         </div>
       </div>
 
@@ -84,9 +94,18 @@ export function ProductDetails({ product: p }: { product: Product }) {
         </div>
 
         <div className="share">
-          <button type="button" onClick={share}>🔗 Havolani nusxalash</button>
-          <a href={`https://t.me/share/url?url=${encodeURIComponent(shareUrl)}&text=${encodeURIComponent(p.name)}`} target="_blank" rel="noopener noreferrer">
-            ✈️ Telegramda ulashish
+          <button type="button" className={copied ? 'share-btn done' : 'share-btn'} onClick={share}>
+            <Icon name={copied ? 'check' : 'link'} />
+            {copied ? 'Nusxalandi' : 'Havolani nusxalash'}
+          </button>
+          <a
+            className="share-btn tg"
+            href={`https://t.me/share/url?url=${encodeURIComponent(shareUrl)}&text=${encodeURIComponent(p.name)}`}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Icon name="telegram" />
+            Telegramda ulashish
           </a>
         </div>
 

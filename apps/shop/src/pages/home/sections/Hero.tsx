@@ -25,8 +25,8 @@ export function Hero() {
           <div className="prod p1"><ProductArt shape="tube" c1="#ffa6c4" c2="#ff6f9f" /></div>
           <div className="prod p2"><ProductArt shape="serum" c1="#c9b2ff" c2="#9b7bf0" /></div>
           <div className="prod p3"><ProductArt shape="jar" c1="#ffcf9e" c2="#ff9f7a" /></div>
-          <div className="sticker s1"><span className="dot">🌿</span><span>Centella<b>tinchlantiradi</b></span></div>
-          <div className="sticker s2"><span className="dot">💧</span><span>Hyaluron<b>24 soat namlik</b></span></div>
+          <div className="sticker s1"><span className="dot"><Icon name="leaf" /></span><span>Centella<b>tinchlantiradi</b></span></div>
+          <div className="sticker s2"><span className="dot"><Icon name="droplet" /></span><span>Hyaluron<b>24 soat namlik</b></span></div>
         </div>
       </div>
     </div>

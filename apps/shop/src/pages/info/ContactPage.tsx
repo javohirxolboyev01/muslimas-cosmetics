@@ -34,9 +34,9 @@ export default function ContactPage() {
     <div className="wrap">
       <PageHeader crumbs={[{ label: 'Aloqa' }]} title="Biz bilan bog'laning" subtitle="Savol, maslahat yoki buyurtma bo'yicha yozing." />
       <InfoCardGrid className="contact-cards">
-        <InfoCard emoji="📞" title="Telefon"><a href={telLink(SHOP.phone)}>{SHOP.phone}</a><p>{SHOP.hours}</p></InfoCard>
-        <InfoCard emoji="✈️" title="Telegram"><a href={`https://t.me/${SHOP.tg}`} target="_blank" rel="noopener noreferrer">@{SHOP.tg}</a><p>Tez javob beramiz</p></InfoCard>
-        <InfoCard emoji="📷" title="Instagram"><a href={`https://instagram.com/${SHOP.ig}`} target="_blank" rel="noopener noreferrer">@{SHOP.ig}</a><p>Yangi mahsulotlar va aksiyalar</p></InfoCard>
+        <InfoCard icon="phone" title="Telefon"><a href={telLink(SHOP.phone)}>{SHOP.phone}</a><p>{SHOP.hours}</p></InfoCard>
+        <InfoCard icon="telegram" title="Telegram"><a href={`https://t.me/${SHOP.tg}`} target="_blank" rel="noopener noreferrer">@{SHOP.tg}</a><p>Tez javob beramiz</p></InfoCard>
+        <InfoCard icon="instagram" title="Instagram"><a href={`https://instagram.com/${SHOP.ig}`} target="_blank" rel="noopener noreferrer">@{SHOP.ig}</a><p>Yangi mahsulotlar va aksiyalar</p></InfoCard>
       </InfoCardGrid>
 
       <div className="two">

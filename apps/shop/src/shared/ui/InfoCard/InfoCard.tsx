@@ -1,16 +1,17 @@
 import type { ReactNode } from 'react';
+import { IconTile, type IconName } from '../Icon/Icon';
 import './InfoCard.css';
 
 interface Props {
-  emoji: string;
+  icon: IconName;
   title: string;
   children: ReactNode;
 }
 
-export function InfoCard({ emoji, title, children }: Props) {
+export function InfoCard({ icon, title, children }: Props) {
   return (
     <div className="info-card">
-      <span className="e" aria-hidden="true">{emoji}</span>
+      <IconTile name={icon} className="e" />
       <h3>{title}</h3>
       {children}
     </div>

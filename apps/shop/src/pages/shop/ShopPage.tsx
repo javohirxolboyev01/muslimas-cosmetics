@@ -44,7 +44,7 @@ export default function ShopPage() {
           {isLoading || data?.length ? (
             <ProductGrid products={data} loading={isLoading} skeletonCount={8} dimmed={isPlaceholderData} />
           ) : (
-            <EmptyState emoji="🔍" title="Hech narsa topilmadi" text="Boshqa so'z yozing yoki filtrlarni o'zgartiring." action={{ label: 'Barcha mahsulotlar', to: '/shop' }} />
+            <EmptyState icon="searchX" title="Hech narsa topilmadi" text="Boshqa so'z yozing yoki filtrlarni o'zgartiring." action={{ label: 'Barcha mahsulotlar', to: '/shop' }} />
           )}
         </div>
       </div>

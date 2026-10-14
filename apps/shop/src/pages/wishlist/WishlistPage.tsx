@@ -31,7 +31,7 @@ export default function WishlistPage() {
           <ProductGrid products={products} loading={isLoading} skeletonCount={Math.min(ids.length, 8)} />
         </>
       ) : (
-        <EmptyState emoji="💗" title="Sevimlilar ro'yxati bo'sh" text="Mahsulotdagi yurakcha tugmasini bosib, yoqqanlarini shu yerda saqlang." action={{ label: "Katalogga o'tish", to: '/shop' }} />
+        <EmptyState icon="heart" title="Sevimlilar ro'yxati bo'sh" text="Mahsulotdagi yurakcha tugmasini bosib, yoqqanlarini shu yerda saqlang." action={{ label: "Katalogga o'tish", to: '/shop' }} />
       )}
     </div>
   );

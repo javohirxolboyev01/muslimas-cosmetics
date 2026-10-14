@@ -14,7 +14,7 @@ export default function CheckoutPage() {
       ) : lines.length ? (
         <CheckoutForm />
       ) : (
-        <EmptyState emoji="🛍️" title="Savat bo'sh" text="Avval mahsulot qo'shing." action={{ label: 'Katalogga', to: '/shop' }} />
+        <EmptyState icon="bag" title="Savat bo'sh" text="Avval mahsulot qo'shing." action={{ label: 'Katalogga', to: '/shop' }} />
       )}
     </div>
   );

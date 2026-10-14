@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { CartLineItem, CouponForm, FreeShippingProgress, SummaryRows, useCart } from '@/features/cart';
 import { useDocumentTitle } from '@/shared/hooks/useDocumentTitle';
-import { Button, EmptyState, PageHeader, PageLoader, Panel } from '@/shared/ui';
+import { Button, EmptyState, Icon, PageHeader, PageLoader, Panel } from '@/shared/ui';
 
 export default function CartPage() {
   useDocumentTitle('Savat');
@@ -17,7 +17,7 @@ export default function CartPage() {
           <Panel>
             {cart.lines.map((l) => <CartLineItem key={`${l.product.id}-${l.variantIndex}`} line={l} />)}
             <div style={{ paddingTop: 14 }}>
-              <Link className="more" to="/shop">← Xaridni davom ettirish</Link>
+              <Link className="more back-link" to="/shop"><Icon name="arrowLeft" />Xaridni davom ettirish</Link>
             </div>
           </Panel>
           <Panel as="aside" title="Buyurtma hisobi" className="sticky-aside">
@@ -28,7 +28,7 @@ export default function CartPage() {
           </Panel>
         </div>
       ) : (
-        <EmptyState emoji="🛍️" title="Savat hozircha bo'sh" text="Yoqqan mahsulotlaringizni qo'shing." action={{ label: 'Xaridni boshlash', to: '/shop' }} />
+        <EmptyState icon="bag" title="Savat hozircha bo'sh" text="Yoqqan mahsulotlaringizni qo'shing." action={{ label: 'Xaridni boshlash', to: '/shop' }} />
       )}
     </div>
   );

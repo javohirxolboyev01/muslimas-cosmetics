@@ -1,12 +1,12 @@
 import { useDocumentTitle } from '@/shared/hooks/useDocumentTitle';
-import { Button, InfoCard, InfoCardGrid, PageHeader } from '@/shared/ui';
+import { Button, InfoCard, InfoCardGrid, PageHeader, type IconName } from '@/shared/ui';
 import { FamilyBanner } from '@/widgets/FamilyBanner';
 import './InfoPages.css';
 
-const VALUES = [
-  { e: '💗', t: "Shaxsiy e'tibor", d: "Har bir buyurtmani e'tibor bilan qadoqlaymiz va savollaringizga shaxsan javob beramiz." },
-  { e: '🛡️', t: 'Ishonchli tanlov', d: "Mahsulotlarni tanlashda tarkibi va teri turiga mosligiga e'tibor beramiz." },
-  { e: '🤝', t: 'Halol munosabat', d: 'Aniq narx, ochiq yetkazib berish shartlari va tushunarli maslahat.' },
+const VALUES: { e: IconName; t: string; d: string }[] = [
+  { e: 'heart', t: "Shaxsiy e'tibor", d: "Har bir buyurtmani e'tibor bilan qadoqlaymiz va savollaringizga shaxsan javob beramiz." },
+  { e: 'shieldCheck', t: 'Ishonchli tanlov', d: "Mahsulotlarni tanlashda tarkibi va teri turiga mosligiga e'tibor beramiz." },
+  { e: 'smile', t: 'Halol munosabat', d: 'Aniq narx, ochiq yetkazib berish shartlari va tushunarli maslahat.' },
 ];
 
 export default function AboutPage() {
@@ -22,7 +22,7 @@ export default function AboutPage() {
       />
       <InfoCardGrid>
         {VALUES.map((v) => (
-          <InfoCard key={v.t} emoji={v.e} title={v.t}><p>{v.d}</p></InfoCard>
+          <InfoCard key={v.t} icon={v.e} title={v.t}><p>{v.d}</p></InfoCard>
         ))}
       </InfoCardGrid>
       <section className="s">

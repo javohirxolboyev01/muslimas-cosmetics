@@ -7,6 +7,7 @@ import {
 import { useProductMap } from '@/features/products';
 import { useDocumentTitle } from '@/shared/hooks/useDocumentTitle';
 import { formatDate } from '@/shared/lib/format';
+import { Icon } from '@/shared/ui';
 import { isValidPhone, maskPhone } from '@/shared/lib/phone';
 import { Button, EmptyState, FormField, PageHeader, PageLoader, Panel } from '@/shared/ui';
 import './OrdersPage.css';
@@ -65,7 +66,7 @@ export default function OrderPage() {
     return (
       <div className="wrap">
         <PageHeader crumbs={[{ label: 'Buyurtmalar', to: '/orders' }, { label: 'Topilmadi' }]} />
-        <EmptyState emoji="🔍" title="Buyurtma topilmadi" text="Buyurtma raqamini tekshiring yoki do'kon bilan bog'laning." action={{ label: 'Aloqa', to: '/contact' }} />
+        <EmptyState icon="searchX" title="Buyurtma topilmadi" text="Buyurtma raqamini tekshiring yoki do'kon bilan bog'laning." action={{ label: 'Aloqa', to: '/contact' }} />
       </div>
     );
   }
@@ -87,7 +88,7 @@ export default function OrderPage() {
     <div className="wrap">
       <PageHeader compact crumbs={crumbs} />
       <Panel className="okbox">
-        <div className="big" aria-hidden="true">{o.status === 'cancelled' ? '📦' : fresh ? '🎉' : '🚚'}</div>
+        <div className="big" aria-hidden="true"><Icon name={o.status === 'cancelled' ? 'package' : fresh ? 'checkCircle' : 'truck'} /></div>
         <h1>{fresh ? 'Buyurtmangiz qabul qilindi!' : `Buyurtma: ${ORDER_STATUS_LABELS[o.status].toLowerCase()}`}</h1>
         <div className="ono">{o.no}</div>
         {fresh && (

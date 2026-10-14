@@ -1,6 +1,6 @@
 .cards3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
 .info-card{background:#fff;border-radius:26px;padding:24px;box-shadow:0 4px 20px rgba(120,60,100,.06);display:grid;gap:6px;align-content:start}
-.info-card .e{font-size:1.8rem}
+.info-card .e{margin-bottom:6px}
 .info-card h3{font-family:var(--head);font-size:1.15rem}
 .info-card p,.info-card a{color:var(--muted);font-size:.92rem}
 .info-card a{font-weight:700;color:var(--pink-deep);word-break:break-word}

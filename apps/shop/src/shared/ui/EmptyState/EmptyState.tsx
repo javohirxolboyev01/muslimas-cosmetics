@@ -1,18 +1,19 @@
 import type { ReactNode } from 'react';
 import { Button } from '../Button/Button';
+import { IconTile, type IconName } from '../Icon/Icon';
 import './EmptyState.css';
 
 interface Props {
-  emoji: string;
+  icon: IconName;
   title: string;
   text?: ReactNode;
   action?: { label: string; to: string } | { label: string; onClick: () => void };
 }
 
-export function EmptyState({ emoji, title, text, action }: Props) {
+export function EmptyState({ icon, title, text, action }: Props) {
   return (
     <div className="empty">
-      <div className="e" aria-hidden="true">{emoji}</div>
+      <IconTile name={icon} className="e" />
       <b>{title}</b>
       {text && <p>{text}</p>}
       {action && ('to' in action

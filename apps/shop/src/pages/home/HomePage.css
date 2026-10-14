@@ -16,7 +16,8 @@
 .prod.p3{width:31%;right:3%;bottom:4%;animation-delay:-2s}
 .sticker{position:absolute;z-index:3;background:#fff;border-radius:18px;padding:10px 14px;box-shadow:var(--shadow-sm);font-size:.78rem;font-weight:700;line-height:1.25;display:flex;align-items:center;gap:10px;text-align:left}
 .sticker b{display:block;font-size:.95rem;color:var(--pink-deep)}
-.sticker .dot{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;font-size:1.05rem}
+.sticker .dot{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;color:var(--ink)}
+.sticker .dot .icon{width:18px;height:18px}
 .s1{top:8%;left:0}.s1 .dot{background:var(--mint)}
 .s2{top:34%;right:-2%}.s2 .dot{background:var(--butter)}
 
@@ -48,7 +49,7 @@
 .stepsr{list-style:none;display:grid;grid-template-columns:repeat(4,1fr);gap:20px;counter-reset:r}
 .stepr{background:#fff;border-radius:26px;padding:26px 22px;box-shadow:0 4px 20px rgba(120,60,100,.06);position:relative;counter-increment:r}
 .stepr::before{content:counter(r);position:absolute;top:-16px;left:22px;width:36px;height:36px;border-radius:50%;background:var(--pink);color:#fff;font-family:var(--head);font-weight:700;display:grid;place-items:center;box-shadow:0 8px 16px rgba(240,80,138,.35)}
-.stepr .ico{font-size:2rem;margin-bottom:8px}
+.stepr .ico{margin:6px 0 12px}
 .stepr h3{font-family:var(--head);font-size:1.2rem;margin-bottom:6px}
 .stepr p{font-size:.9rem;color:var(--muted)}
 
@@ -63,7 +64,7 @@
 /* trust */
 .trust{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;background:#fff;border-radius:30px;padding:26px;box-shadow:var(--shadow-sm)}
 .trust>div{display:flex;gap:14px;align-items:center;padding:6px 8px}
-.trust .e{flex:none;width:50px;height:50px;border-radius:16px;display:grid;place-items:center;font-size:1.5rem;background:var(--pink-soft)}
+.trust .e{width:50px;height:50px}
 .trust b{display:block;font-size:.95rem}
 .trust span.t{font-size:.8rem;color:var(--muted)}
 

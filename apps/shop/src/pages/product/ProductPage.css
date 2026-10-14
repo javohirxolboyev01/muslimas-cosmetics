@@ -8,7 +8,7 @@
 .gal .big .pimg{position:absolute;inset:0;z-index:1;width:100%;height:100%;object-fit:cover}
 .perks{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:18px}
 .perks div{background:#fff;border-radius:18px;padding:12px 8px;text-align:center;font-size:.76rem;font-weight:700;box-shadow:0 4px 14px rgba(120,60,100,.05)}
-.perks i{display:block;font-style:normal;font-size:1.3rem}
+.perks .icon{display:block;width:24px;height:24px;margin:0 auto 6px;color:var(--pink-deep)}
 .pd-info{min-width:0}
 .pd h1{font-family:var(--head);font-size:clamp(1.6rem,3.4vw,2.5rem);line-height:1.15}
 .pd .kicker{color:var(--muted);font-weight:700;font-size:.85rem;margin-bottom:6px}
@@ -22,8 +22,16 @@
 .skins span{background:var(--lilac);padding:5px 12px;border-radius:99px;font-size:.78rem;font-weight:700}
 .buyrow{display:flex;gap:12px;flex-wrap:wrap;margin-top:22px;align-items:center}
 .buyrow .btn{flex:1 1 150px}
-.share{display:flex;gap:14px;margin-top:16px;font-size:.85rem;font-weight:700;color:var(--muted);flex-wrap:wrap}
-.share button:hover,.share a:hover{color:var(--pink-deep)}
+.share{display:flex;gap:10px;margin-top:18px;flex-wrap:wrap}
+.share-btn{display:inline-flex;align-items:center;gap:8px;height:42px;padding:0 16px 0 13px;border-radius:99px;border:1.5px solid var(--line);background:#fff;font-size:.85rem;font-weight:700;color:var(--ink);transition:.2s}
+.share-btn .icon{width:18px;height:18px;color:var(--pink-deep)}
+.share-btn:hover{border-color:var(--rose);color:var(--pink-deep)}
+.share-btn.done,.share-btn.done:hover{border-color:#8fdcb8;background:var(--mint);color:#1f8f5f}
+.share-btn.done .icon{color:#1f8f5f;stroke-width:2.4}
+.share-btn.tg{border-color:transparent;background:#e8f5fd;color:#1d8ac4}
+.share-btn.tg .icon{color:#229ed9;width:19px;height:19px}
+.share-btn.tg:hover{background:#229ed9;color:#fff}
+.share-btn.tg:hover .icon{color:#fff}
 .pd-acc{margin-top:26px}
 @media (max-width:860px){
   .pd{grid-template-columns:1fr}

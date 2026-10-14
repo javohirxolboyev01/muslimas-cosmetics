@@ -1,4 +1,5 @@
 .empty{text-align:center;padding:clamp(40px,8vw,90px) 20px;color:var(--muted);grid-column:1/-1}
-.empty .e{font-size:3.2rem}
+.empty .e{width:76px;height:76px;border-radius:50%}
+.empty .e .icon{width:34px;height:34px;stroke-width:1.6}
 .empty b{display:block;font-family:var(--head);font-size:1.5rem;color:var(--ink);margin:10px 0 6px}
 .empty .btn{margin-top:20px}
