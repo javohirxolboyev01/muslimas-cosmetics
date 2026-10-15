@@ -3,7 +3,7 @@
   "build": {
     "builder": "DOCKERFILE",
     "dockerfilePath": "apps/shop/Dockerfile",
-    "watchPatterns": ["apps/shop/**", "packages/shared/**", "package-lock.json"]
+    "watchPatterns": ["apps/shop/**", "packages/shared/**", "deploy/**", "package-lock.json"]
   },
   "deploy": {
     "restartPolicyType": "ON_FAILURE"

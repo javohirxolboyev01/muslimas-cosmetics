@@ -1,0 +1,13 @@
+{
+  "name": "Muslima's Cosmetics — koreys kosmetikasi",
+  "short_name": "Muslima's",
+  "lang": "uz",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#fff5f8",
+  "theme_color": "#f0508a",
+  "icons": [
+    { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}

@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { productPath } from '@mc/shared';
 import { ProductThumb } from '@/features/products/components/ProductThumb';
 import { Icon, QtyStepper } from '@/shared/ui';
 import { formatPrice } from '@/shared/lib/format';
@@ -10,7 +11,7 @@ export function CartLineItem({ line }: { line: CartLine }) {
   const changeQty = useCartStore((s) => s.changeQty);
   const remove = useCartStore((s) => s.remove);
   const { product: p } = line;
-  const url = `/product/${p.id}`;
+  const url = productPath(p);
 
   return (
     <div className="line">

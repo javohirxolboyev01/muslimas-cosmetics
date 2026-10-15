@@ -10,6 +10,8 @@ const schema = z.object({
   CORS_ORIGINS: z.string().default(''),
   /** Yuklangan rasmlar papkasi (apps/api ga nisbatan yoki absolyut yo'l) */
   UPLOAD_DIR: z.string().default('uploads'),
+  /** Saytning asosiy manzili (canonical, sitemap). Berilmasa so'rovdagi domen ishlatiladi */
+  SITE_URL: z.string().url().optional(),
   SHOP_TZ: z.string().default('Asia/Tashkent'),
   /** Admin login. Berilsa, API har ishga tushganda shu email/parolni o'rnatadi (services/admin.ts) */
   ADMIN_EMAIL: z.string().trim().email('ADMIN_EMAIL noto‘g‘ri').optional(),

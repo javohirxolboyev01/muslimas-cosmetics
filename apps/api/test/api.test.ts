@@ -278,3 +278,38 @@ describe('admin: CRUD', () => {
     expect(pub).toMatchObject({ freeFrom: 300_000, welcomePercent: 0 });
   });
 });
+
+describe('SEO', () => {
+  const head = async (url: string) =>
+    (await app.inject({ url: `/api/seo/head?url=${encodeURIComponent(url)}`, headers: { host: 'shop.uz' } })).body;
+
+  it('mahsulot sahifasi: sarlavha, canonical (slug bilan), narx va JSON-LD', async () => {
+    const html = await head('/product/1');
+    expect(html).toContain('<title>Mahsulot 1 — ');
+    expect(html).toContain('<link rel="canonical" href="http://shop.uz/product/1-mahsulot-1" />');
+    expect(html).toContain('"@type":"Product"');
+    expect(html).toContain('"price":100000');
+  });
+
+  it("faol bo'lmagan mahsulot va shaxsiy sahifalar indekslanmaydi", async () => {
+    expect(await head('/product/3-mahsulot-3')).toContain('noindex');
+    expect(await head('/cart')).toContain('noindex, nofollow');
+    expect(await head('/shop?q=krem')).toContain('noindex');
+  });
+
+  it('matndagi HTML ekranlanadi', async () => {
+    await db.update(products).set({ name: '</title><script>x</script>' }).where(sql`id = 1`);
+    const html = await head('/product/1');
+    expect(html).not.toContain('<script>x');
+    expect(html).toContain('&lt;/title&gt;');
+  });
+
+  it("sitemap faqat faol mahsulotlarni slug bilan ko'rsatadi; robots sitemap'ga ishora qiladi", async () => {
+    const xml = (await app.inject({ url: '/api/seo/sitemap.xml', headers: { host: 'shop.uz' } })).body;
+    expect(xml).toContain('<loc>http://shop.uz/product/1-mahsulot-1</loc>');
+    expect(xml).toContain('<loc>http://shop.uz/shop?cat=serum</loc>');
+    expect(xml).not.toContain('/product/3');
+    const robots = (await app.inject({ url: '/api/seo/robots.txt', headers: { host: 'shop.uz' } })).body;
+    expect(robots).toContain('Sitemap: http://shop.uz/sitemap.xml');
+  });
+});

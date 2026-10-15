@@ -1,4 +1,5 @@
 import { useDocumentTitle } from '@/shared/hooks/useDocumentTitle';
+import { useShop } from '@/config/shop';
 import { FamilyBanner } from '@/widgets/FamilyBanner';
 import { Hero } from './sections/Hero';
 import { Marquee } from './sections/Marquee';
@@ -12,7 +13,8 @@ import { Newsletter } from './sections/Newsletter';
 import './HomePage.css';
 
 export default function HomePage() {
-  useDocumentTitle('Koreys kosmetikasi');
+  const shop = useShop();
+  useDocumentTitle(`${shop.name} — koreys kosmetikasi onlayn do'koni ${shop.city}da`, { full: true });
   return (
     <>
       <Hero />

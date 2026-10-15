@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState, type FormEvent } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { productPath } from '@mc/shared';
 import { useProductSearch, ProductThumb } from '@/features/products';
 import { useDebouncedValue } from '@/shared/hooks/useDebouncedValue';
 import { useLockBodyScroll } from '@/shared/hooks/useLockBodyScroll';
@@ -49,7 +50,7 @@ function SearchDialog({ onClose }: { onClose: () => void }) {
           {showEmpty && <p className="sres-empty">Hech narsa topilmadi</p>}
           {term.trim() &&
             results.map((p) => (
-              <Link key={p.id} to={`/product/${p.id}`} onClick={onClose}>
+              <Link key={p.id} to={productPath(p)} onClick={onClose}>
                 <ProductThumb product={p} size="sm" flat />
                 <span>{p.name}</span>
                 <b>{formatPrice(p.price)}</b>

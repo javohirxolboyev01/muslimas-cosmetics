@@ -5,7 +5,7 @@ import { usageSteps } from '@/config/usage';
 import { useAddToCart } from '@/features/cart';
 import { ProductVisual, useCategoryName, type Product } from '@/features/products';
 import { WishButton } from '@/features/wishlist';
-import { SKIN_LABELS } from '@mc/shared';
+import { SKIN_LABELS, productPath } from '@mc/shared';
 import { copyText } from '@/shared/lib/clipboard';
 import { discountPercent, formatPrice } from '@/shared/lib/format';
 import { toast } from '@/shared/toast/toastStore';
@@ -24,7 +24,7 @@ export function ProductDetails({ product: p }: { product: Product }) {
   const [copied, setCopied] = useState(false);
   const vr = p.variants[vi];
   const off = discountPercent(vr.price, vr.oldPrice);
-  const shareUrl = `${window.location.origin}/product/${p.id}`;
+  const shareUrl = window.location.origin + productPath(p);
 
   const changeQty = (d: number) => setQty((q) => Math.max(1, Math.min(MAX_QTY, q + d)));
   const buyNow = () => {

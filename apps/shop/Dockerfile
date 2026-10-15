@@ -13,6 +13,8 @@ COPY apps/shop apps/shop
 # API shu domendagi /api orqali (Caddy uni ichki tarmoqdan api servisiga uzatadi)
 ENV VITE_API_URL=/api
 RUN npm run build -w @mc/shop
+COPY deploy/inject-seo-head.mjs deploy/
+RUN node deploy/inject-seo-head.mjs apps/shop/dist/index.html
 
 FROM caddy:2-alpine
 COPY deploy/Caddyfile /etc/caddy/Caddyfile

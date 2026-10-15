@@ -1,5 +1,6 @@
 import { memo } from 'react';
 import { Link } from 'react-router-dom';
+import { productPath } from '@mc/shared';
 import { ProductVisual } from './ProductVisual';
 import { WishButton } from '@/features/wishlist/components/WishButton';
 import { useAddToCart } from '@/features/cart/hooks/useAddToCart';
@@ -12,7 +13,7 @@ import './ProductCard.css';
 export const ProductCard = memo(function ProductCard({ product: p }: { product: Product }) {
   const add = useAddToCart();
   const catName = useCategoryName();
-  const url = `/product/${p.id}`;
+  const url = productPath(p);
 
   return (
     <article className="card">

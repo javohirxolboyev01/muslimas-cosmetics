@@ -21,7 +21,10 @@ export default function ShopPage() {
         : filters.q
           ? `"${rawQuery}" bo'yicha natijalar`
           : 'Katalog';
-  useDocumentTitle(title);
+  // Server bergan sarlavha bilan bir xil (api/routes/seo.ts)
+  const seoTitle =
+    title === 'Katalog' ? 'Katalog — barcha koreys kosmetikasi' : filters.category && !filters.q ? `${title} — koreys kosmetikasi` : title;
+  useDocumentTitle(seoTitle);
 
   const activeCount = [filters.category, filters.q, filters.min || filters.max, filters.skin, filters.sale].filter(Boolean).length;
 

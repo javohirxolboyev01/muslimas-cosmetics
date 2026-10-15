@@ -17,8 +17,24 @@
 		reverse_proxy {$API_INTERNAL_URL:http://api.railway.internal:8080}
 	}
 
+	# SEO: sitemap.xml va robots.txt mahsulotlar bo'yicha API'da yasaladi.
+	# Admin'da /srv/robots.txt (Disallow: /) bor — u fayl bo'lsa, o'shanisi beriladi.
+	@seo {
+		path /sitemap.xml /robots.txt
+		not file {
+			root /srv
+		}
+	}
+	handle @seo {
+		rewrite * /api/seo{path}
+		reverse_proxy {$API_INTERNAL_URL:http://api.railway.internal:8080}
+	}
+
 	handle {
 		root * /srv
+		# Sayt index.html'idagi {{httpInclude "/api/seo/head..."}} — har sahifa uchun title/description/
+		# canonical/Open Graph/JSON-LD (shop Dockerfile qo'yadi; admin index.html'da shablon yo'q)
+		templates
 		# Vite fayl nomlari xeshlangan — abadiy keshlash xavfsiz; index.html esa har doim yangisi olinadi
 		@assets path /assets/*
 		header @assets Cache-Control "public, max-age=31536000, immutable"
@@ -26,5 +42,23 @@
 		header @html Cache-Control "no-cache"
 		try_files {path} /index.html
 		file_server
+	}
+
+	# API o'chiq bo'lsa shablon (httpInclude) xato beradi — sahifa standart SEO teglari bilan ochilsin
+	handle_errors {
+		@page {
+			not path /api/* /sitemap.xml /robots.txt
+			file /index.fallback.html {
+				root /srv
+			}
+		}
+		handle @page {
+			root * /srv
+			header Cache-Control "no-cache"
+			rewrite * /index.fallback.html
+			file_server {
+				status 200
+			}
+		}
 	}
 }

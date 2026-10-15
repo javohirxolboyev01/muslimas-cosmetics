@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import { productIdFromParam } from '@mc/shared';
 import { ProductGrid, useCategoryName, useProduct, useProductsByIds, useRelatedProducts } from '@/features/products';
 import { useRecentlyViewed } from '@/features/recently-viewed/recentlyViewedStore';
 import { useDocumentTitle } from '@/shared/hooks/useDocumentTitle';
@@ -9,7 +10,7 @@ import { ProductDetails } from './ProductDetails';
 import './ProductPage.css';
 
 export default function ProductPage() {
-  const id = Number(useParams().id);
+  const id = productIdFromParam(useParams().id);
   const { data: product, isLoading, isError } = useProduct(id);
   const { data: related, isLoading: relLoading } = useRelatedProducts(id);
   const catName = useCategoryName();
