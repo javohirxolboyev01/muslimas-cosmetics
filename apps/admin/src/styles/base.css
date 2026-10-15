@@ -2,7 +2,8 @@
 *::before,
 *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-html { -webkit-text-size-adjust: 100%; }
+/* Mobil: double-tap zoom yo'q, sahifa yon tomonga siljimaydi */
+html { -webkit-text-size-adjust: 100%; touch-action: manipulation; overflow-x: hidden; overflow-x: clip; }
 body {
   font-family: var(--font-body);
   color: var(--ink);
@@ -17,6 +18,10 @@ body {
 a { color: inherit; text-decoration: none; }
 button { font: inherit; color: inherit; border: 0; background: none; cursor: pointer; }
 input, select, textarea { font: inherit; color: inherit; }
+/* iOS 16px dan kichik maydonga bosilganda ekranni zoom qiladi */
+@media (max-width: 860px) {
+  input, select, textarea { font-size: 16px !important; }
+}
 ul, ol { list-style: none; }
 svg { display: block; flex: none; }
 img { max-width: 100%; display: block; }
